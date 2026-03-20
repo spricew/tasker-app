@@ -15,7 +15,7 @@ export default function Home() {
         <form className="flex flex-col w-100 gap-2" action="">
           <PrimaryInput label="email" />
           <PrimaryInput label="contraseña" />
-          <PrimaryButton />
+          <PrimaryButton text="Iniciar sesión" />
           <span className="text-sm text-zinc-500">¿No tienes una cuenta? <a href="#" className="text-zinc-900">Crear cuenta</a></span>
         </form>
       </main>
