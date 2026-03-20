@@ -5,7 +5,7 @@
   box-sizing: border-box;
 } */
 
-@theme {
+@theme inline{
     --color-black-primary: #1b1b1b;
     --color-on-black-primary: #FFFFFF;
     --color-black-primary-container: #1B1B1B;
