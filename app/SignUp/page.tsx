@@ -13,11 +13,11 @@ export default function SignUp() {
                     <a href="/" className="text-sm text-primary font-medium tracking-tight">Inicia sesión</a>
                 </header>
                 <form className="flex flex-col gap-2 w-full">
-                    <PrimaryInput label="usuario" />
-                    <PrimaryInput label="email" />
-                    <PrimaryInput label="contraseña" />
-                    <PrimaryInput label="Teléfono" />
-                    <PrimaryButton text="Crear cuenta" />
+                    <PrimaryInput label="usuario" placeholder="userexample"/>
+                    <PrimaryInput label="email" placeholder="email@example.com"/>
+                    <PrimaryInput label="contraseña" placeholder="••••••••" type="password"/>
+                    <PrimaryInput label="Teléfono" placeholder="999 123 4567" type="tel" />
+                    <PrimaryButton text="Crear cuenta" glow/>
                 </form>
 
             </main>
