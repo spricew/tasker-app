@@ -1,6 +1,6 @@
 
 interface InputProps {
-    label: string;
+    label?: string;
 }
 
 export default function PrimaryInput({ label }: InputProps) {
