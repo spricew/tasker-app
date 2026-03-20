@@ -13,8 +13,8 @@ export default function Home() {
           <span className="text-base font-light tracking-tight">Eleva tu productividad</span>
         </div>
         <form className="flex flex-col w-100 gap-2" action="">
-          <PrimaryInput label="email" />
-          <PrimaryInput label="contraseña" />
+          <PrimaryInput label="email" placeholder="email@example.com" />
+          <PrimaryInput label="contraseña" placeholder="••••••••" type="password" />
           <PrimaryButton text="Iniciar sesión" />
           <span className="text-sm text-zinc-500">¿Nuevo en Tasker? <a href="/SignUp" className="text-primary">Crea una cuenta</a></span>
         </form>
