@@ -1,3 +1,5 @@
+import PrimaryInput from "@/app/components/ui/PrimaryInput";
+import PrimaryButton from "@/app/components/ui/PrimaryButton";
 
 export default function Home() {
   return (
@@ -8,14 +10,12 @@ export default function Home() {
           <span className="text-3xl font-semibold tracking-tighter">
             Tasklist
           </span>
-        <span className="text-base font-light tracking-tight">Eleva tu productividad</span>
+          <span className="text-base font-light tracking-tight">Eleva tu productividad</span>
         </div>
         <form className="flex flex-col w-100 gap-2" action="">
-          <label htmlFor="" className="text-base tracking-wider font-medium uppercase">EMAIL</label>
-          <input type="text" placeholder="@example.com" className="block rounded-full border-2 border-zinc-300 px-4 py-2 text-lg outline-none focus:border-zinc-500" />
-          <label htmlFor="" className="text-base tracking-wider font-medium uppercase">Contraseña</label>
-          <input type="text" placeholder="password" className="block rounded-full border-2 border-zinc-300 px-4 py-2 text-lg outline-none focus:border-zinc-500" />
-          <button className="bg-zinc-900 text-white rounded-full px-4 py-2 text-lg font-medium tracking-wider uppercase">Iniciar sesion</button>
+          <PrimaryInput label="email" />
+          <PrimaryInput label="contraseña" />
+          <PrimaryButton />
           <span className="text-sm text-zinc-500">¿No tienes una cuenta? <a href="#" className="text-zinc-900">Crear cuenta</a></span>
         </form>
       </main>
