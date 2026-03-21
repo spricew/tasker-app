@@ -205,3 +205,10 @@ body {
     font-size: 1.8rem;
     letter-spacing: var(--spacing-text-title);
 }
+
+@supports (corner-shape: squircle) {
+    * {
+        corner-shape: squircle;
+        border-radius: 4em;
+    }
+}
