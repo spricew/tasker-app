@@ -1,7 +1,7 @@
 import PrimaryButton from "@/app/components/ui/PrimaryButton";
 import PrimaryInput from "@/app/components/ui/PrimaryInput";
 
-export default function SignUp() {
+export default function Register() {
     return (
         <div className="flex justify-center flex-1 items-center">
             <main className="squircle flex flex-col justify-center items-center gap-2 w-120 h-140 p-10 rounded-3xl bg-surface-container-low">

@@ -24,7 +24,7 @@ export default function Home() {
           <span className="text-sm text-ref-palette-neutral-50 mr-1">
             ¿Nuevo en Tasker?
           </span>
-          <a href="/signup" className="text-sm text-primary font-medium tracking-tight">Crea una cuenta</a>
+          <a href="/register" className="text-sm text-primary font-medium tracking-tight">Crea una cuenta</a>
         </div>
       </main>
     </div>
