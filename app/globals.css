@@ -207,7 +207,7 @@ body {
 }
 
 @supports (corner-shape: squircle) {
-    * {
+    .squircle {
         corner-shape: squircle;
         border-radius: 4em;
     }

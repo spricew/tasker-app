@@ -10,7 +10,7 @@ export default function PrimaryInput({ label, ...props }: InputProps) {
             <input
                 type="text"
                 placeholder="text"
-                className="py-2 px-4 rounded-xl ring ring-outline-variant bg-surface-container-lowest"
+                className="squircle py-2 px-4 rounded-xl ring ring-outline-variant bg-surface-container-lowest"
                 {...props}
             />
         </div>

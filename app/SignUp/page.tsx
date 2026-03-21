@@ -4,7 +4,7 @@ import PrimaryInput from "@/app/components/ui/PrimaryInput";
 export default function SignUp() {
     return (
         <div className="flex justify-center flex-1 items-center">
-            <main className="flex flex-col justify-center items-center gap-2 w-120 h-140 p-10 rounded-3xl bg-surface-container-low">
+            <main className="squircle flex flex-col justify-center items-center gap-2 w-120 h-140 p-10 rounded-3xl bg-surface-container-low">
                 <header className="mb-2">
                     <h1 className="text-3xl text-center font-semibold tracking-tighter">Crear cuenta</h1>
                     <span className="text-sm text-ref-palette-neutral-50 mr-1">
