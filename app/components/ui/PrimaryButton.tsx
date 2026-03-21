@@ -23,10 +23,10 @@ export default function PrimaryButton({
     };
 
     const glowStyles = {
-        primary: "shadow-xl shadow-primary-container/20 hover:shadow-xl hover:shadow-primary-container/70",
-        secondary: "shadow-lg shadow-secondary-container/50 hover:shadow-xl hover:shadow-secondary-container/70",
-        tertiary: "shadow-lg shadow-tertiary-container/50 hover:shadow-xl hover:shadow-tertiary-container/70",
-        destructive: "shadow-lg shadow-error/50 hover:shadow-xl hover:shadow-error/70",
+        primary: "shadow-xl shadow-primary-container/20 hover:shadow-xl hover:shadow-primary-container/30",
+        secondary: "shadow-xl shadow-secondary-container/20 hover:shadow-xl hover:shadow-secondary-container/30",
+        tertiary: "shadow-xl shadow-tertiary-container/20 hover:shadow-xl hover:shadow-tertiary-container/30",
+        destructive: "shadow-xl shadow-error/20 hover:shadow-xl hover:shadow-error/30",
     };
 
     return (
