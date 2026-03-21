@@ -32,10 +32,13 @@ export default function PrimaryButton({
     return (
         <button 
             className={`
-                inline-flex items-center justify-center rounded-full px-4 py-2 text-lg font-medium tracking-tight transition-all duration-300
+                inline-flex items-center justify-center rounded-full px-3 py-1.5
+                text-lg font-medium tracking-tight 
+                hover:scale-105 cursor-pointer
                 ${themeStyles[theme]} 
                 ${glow ? glowStyles[theme] : ""}
             `}
+            style={{ transition: "box-shadow 0.3s ease, scale 0.3s cubic-bezier(0.16,1,0.3,1)" }}
         >
             {text}
         </button>
