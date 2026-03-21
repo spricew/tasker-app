@@ -1,5 +1,5 @@
-import PrimaryButton from "@/app/components/ui/PrimaryButton";
-import PrimaryInput from "@/app/components/ui/PrimaryInput";
+import PrimaryButton from "@/components/ui/PrimaryButton";
+import PrimaryInput from "@/components/ui/PrimaryInput";
 
 export default function Register() {
     return (

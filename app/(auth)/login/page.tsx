@@ -1,5 +1,5 @@
-import PrimaryInput from "@/app/components/ui/PrimaryInput";
-import PrimaryButton from "@/app/components/ui/PrimaryButton";
+import PrimaryInput from "@/components/ui/PrimaryInput";
+import PrimaryButton from "@/components/ui/PrimaryButton";
 
 export default function Login() {
   return (
