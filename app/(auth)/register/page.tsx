@@ -15,7 +15,7 @@ export default function Register() {
                     <span className="text-sm text-ref-palette-neutral-50 mr-1">
                         ¿Ya tienes una cuenta?
                     </span>
-                    <a href="/" className="text-sm text-primary font-medium tracking-tight">Inicia sesión</a>
+                    <a href="/login" className="text-sm text-primary font-medium tracking-tight">Inicia sesión</a>
                 </header>
                 <form className="flex flex-col gap-3 w-full">
                     <PrimaryInput label="usuario" placeholder="userexample" />
