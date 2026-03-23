@@ -20,16 +20,16 @@ export default function Adminr() {
                 <table className="w-full text-sm text-left rtl:text-right text-body">
                     <thead className="text-sm border-b border-outline-variant">
                         <tr>
-                            <th scope="col" className="px-6 py-5 font-medium">
+                            <th scope="col" className="tracking-tight text-base px-6 py-5 font-medium">
                                 Nombre completo
                             </th>
-                            <th scope="col" className="px-6 py-5 font-medium">
+                            <th scope="col" className="tracking-tight text-base px-6 py-5 font-medium">
                                 Email
                             </th>
-                            <th scope="col" className="px-6 py-5 font-medium">
+                            <th scope="col" className="tracking-tight text-base px-6 py-5 font-medium">
                                 Rol
                             </th>
-                            <th scope="col" className="px-6 py-5 font-medium text-center">
+                            <th scope="col" className="tracking-tight text-base px-6 py-5 font-medium text-center">
                                 Actions
                             </th>
                         </tr>
