@@ -1,5 +1,5 @@
 import Image from "next/image";
-import PrimaryButton from "@/components/ui/PrimaryButton";
+import PrimaryButton from "@/components/ui/Buttons/PrimaryButton";
 import PrimaryInput from "@/components/ui/PrimaryInput";
 
 export default function Register() {

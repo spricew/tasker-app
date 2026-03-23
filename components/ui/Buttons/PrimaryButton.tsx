@@ -1,17 +1,14 @@
 interface PrimaryButtonProps {
     text: string;
-    theme?: "primary" | "secondary" | "tertiary" | "destructive";
-    extraclass?: string;
-}
-
-interface PrimaryButtonProps {
-    text: string;
+    Icon?: React.ReactNode;
     theme?: "primary" | "secondary" | "tertiary" | "destructive";
     glow?: boolean;
+    extraclass?: string;
 }
 
 export default function PrimaryButton({ 
     text, 
+    Icon,
     theme = "primary", 
     glow = false,
     extraclass = "",

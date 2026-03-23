@@ -1,4 +1,5 @@
-import PrimaryButton from "@/components/ui/PrimaryButton";
+import PrimaryButton from "@/components/ui/Buttons/PrimaryButton";
+import TertiaryButton from "@/components/ui/Buttons/TertiaryButton";
 
 export default function Adminr() {
     return (
@@ -45,9 +46,10 @@ export default function Adminr() {
                             <td className="px-6 py-4">
                                 Admin
                             </td>
-                            <td className="flex justify-center px-6 py-4 gap-2">
+                            <td className="flex justify-center items-center px-6 py-4 gap-2">
                                 <PrimaryButton text="editar" theme="secondary" />
                                 <PrimaryButton text="eliminar" theme="destructive" />
+                                <TertiaryButton text="ver todos" theme="tertiary" />
                             </td>
                         </tr>
                     </tbody>
