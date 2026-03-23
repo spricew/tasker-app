@@ -18,7 +18,7 @@ export default function Login() {
         <form className="flex flex-col w-100 gap-3" action="">
           <PrimaryInput label="email" placeholder="email@example.com" />
           <PrimaryInput label="contraseña" placeholder="••••••••" type="password" />
-          <PrimaryButton text="Iniciar sesión" />
+          <PrimaryButton text="Iniciar sesión" extraclass="w-full"/>
         </form>
         <div>
           <span className="text-sm text-ref-palette-neutral-50 mr-1">
