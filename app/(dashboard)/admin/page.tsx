@@ -5,7 +5,7 @@ export default function Adminr() {
         <div className="flex flex-col flex-1 gap-y-8 px-18 py-12">
             <header className="flex justify-between items-center">
                 <div>
-                    <h1 className="text-4xl tracking-tighter font-bold">Admin Dashboard</h1>
+                    <h1 className="text-4xl tracking-tighter font-semibold">Admin Dashboard</h1>
                     <p>Officia proident ut dolore magna qui consectetur mollit et id enim fugiat sint nisi labore.</p>
                 </div>
 
