@@ -19,15 +19,15 @@ export default function PrimaryButton({
 
     const themeStyles = {
         primary: "bg-primary-container text-on-primary-container",
-        secondary: "bg-secondary-container text-on-secondary-container",
-        tertiary: "bg-tertiary-container text-on-tertiary-container",
+        secondary: "bg-secondary text-on-secondary",
+        tertiary: "bg-tertiary text-on-tertiary",
         destructive: "bg-error text-on-error",
     };
 
     const glowStyles = {
         primary: "shadow-xl shadow-primary-container/20 hover:shadow-xl hover:shadow-primary-container/30",
-        secondary: "shadow-xl shadow-secondary-container/20 hover:shadow-xl hover:shadow-secondary-container/30",
-        tertiary: "shadow-xl shadow-tertiary-container/20 hover:shadow-xl hover:shadow-tertiary-container/30",
+        secondary: "shadow-xl shadow-secondary/20 hover:shadow-xl hover:shadow-secondary/30",
+        tertiary: "shadow-xl shadow-tertiary/20 hover:shadow-xl hover:shadow-tertiary/30",
         destructive: "shadow-xl shadow-error/20 hover:shadow-xl hover:shadow-error/30",
     };
 
