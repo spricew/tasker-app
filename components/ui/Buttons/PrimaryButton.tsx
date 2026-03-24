@@ -1,8 +1,9 @@
 import { ElementType } from "react";
 
 interface PrimaryButtonProps {
-    text: string;
+    text?: string;
     Icon?: ElementType;
+    iconPosition?: "left" | "right";
     theme?: "primary" | "secondary" | "tertiary" | "destructive";
     glow?: boolean;
     extraclass?: string;
@@ -11,6 +12,7 @@ interface PrimaryButtonProps {
 export default function PrimaryButton({ 
     text, 
     Icon,
+    iconPosition = "left",
     theme = "primary", 
     glow = false,
     extraclass = "",
@@ -43,8 +45,9 @@ export default function PrimaryButton({
             `}
             style={{ transition: "box-shadow 0.3s ease, scale 0.3s cubic-bezier(0.16,1,0.3,1)" }}
         >
-            {Icon && <Icon strokeWidth={3} className="size-[1.02em]"/>}
+            {Icon && iconPosition === "left" && <Icon strokeWidth={3} className="size-[1.02em]"/>}
             {text}
+            {Icon && iconPosition === "right" && <Icon strokeWidth={3} className="size-[1.02em]"/>}
         </button>
     );
 }
