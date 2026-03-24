@@ -22,7 +22,7 @@ export default function Register() {
                     <PrimaryInput label="usuario" placeholder="userexample" />
                     <PrimaryInput label="email" placeholder="email@example.com" />
                     <PrimaryInput label="contraseña" placeholder="••••••••" type="password" />
-                    <PrimaryInput label="Teléfono" placeholder="999 123 4567" type="tel" />
+                    {/* <PrimaryInput label="Teléfono" placeholder="999 123 4567" type="tel" /> */}
                     <PrimaryButton text="Crear cuenta" glow extraclass="w-full" />
                 </form>
 
