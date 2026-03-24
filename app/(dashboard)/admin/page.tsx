@@ -1,7 +1,7 @@
 import PrimaryButton from "@/components/ui/Buttons/PrimaryButton";
 import TertiaryButton from "@/components/ui/Buttons/TertiaryButton";
 
-import { Plus } from "lucide-react";
+import { Plus, Pencil, Trash2 } from "lucide-react";
 
 export default function Adminr() {
     return (
@@ -14,7 +14,7 @@ export default function Adminr() {
 
                 <PrimaryButton
                     text="Crear usuario"
-                    Icon={ <Plus strokeWidth={3} className="size-[1.02em]"/>}
+                    Icon={<Plus strokeWidth={3} className="size-[1.02em]"/>}
                     glow
                 />
             </header>
@@ -50,9 +50,8 @@ export default function Adminr() {
                                 Admin
                             </td>
                             <td className="flex justify-center items-center px-6 py-4 gap-2">
-                                <PrimaryButton text="editar" theme="secondary" href="/" />
-                                <PrimaryButton text="eliminar" theme="destructive" />
-                                <TertiaryButton text="ver todos" theme="tertiary" />
+                                <TertiaryButton Icon={<Pencil strokeWidth={2.6} className="size-6"/>} theme="secondary" />
+                                <TertiaryButton Icon={<Trash2 strokeWidth={2.6} className="size-6"/>} theme="destructive" />
                             </td>
                         </tr>
                     </tbody>
