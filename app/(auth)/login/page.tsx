@@ -1,5 +1,6 @@
 import PrimaryInput from "@/components/ui/PrimaryInput";
 import PrimaryButton from "@/components/ui/Buttons/PrimaryButton";
+import TertiaryButton from "@/components/ui/Buttons/TertiaryButton";
 
 export default function Login() {
   return (
@@ -21,10 +22,10 @@ export default function Login() {
           <PrimaryButton text="Iniciar sesión" extraclass="w-full"/>
         </form>
         <div>
-          <span className="text-sm text-ref-palette-neutral-50 mr-1">
+          <span className="text-sm text-ref-palette-neutral-50">
             ¿Nuevo en Tasker?
           </span>
-          <a href="/register" className="text-sm text-primary font-medium tracking-tight">Crea una cuenta</a>
+          <TertiaryButton text="Crea una cuenta" theme="primary" href="/register" extraclass="text-sm" />
         </div>
       </main>
     </div>
