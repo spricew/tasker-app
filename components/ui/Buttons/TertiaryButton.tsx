@@ -3,7 +3,7 @@ import { ButtonHTMLAttributes, AnchorHTMLAttributes } from "react";
 import Link from "next/link";
 
 interface BaseProps {
-    text: string;
+    text?: string;
     Icon?: React.ReactNode;
     iconPosition?: "left" | "right";
     theme?: "primary" | "secondary" | "tertiary" | "destructive";
