@@ -14,7 +14,7 @@ export default function Adminr() {
 
                 <PrimaryButton
                     text="Crear usuario"
-                    Icon={Plus}
+                    Icon={ <Plus strokeWidth={3} className="size-[1.02em]"/>}
                     glow
                 />
             </header>
@@ -50,7 +50,7 @@ export default function Adminr() {
                                 Admin
                             </td>
                             <td className="flex justify-center items-center px-6 py-4 gap-2">
-                                <PrimaryButton text="editar" theme="secondary" />
+                                <PrimaryButton text="editar" theme="secondary" href="/" />
                                 <PrimaryButton text="eliminar" theme="destructive" />
                                 <TertiaryButton text="ver todos" theme="tertiary" />
                             </td>
