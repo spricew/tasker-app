@@ -1,6 +1,8 @@
+import { ElementType } from "react";
+
 interface PrimaryButtonProps {
     text: string;
-    Icon?: React.ReactNode;
+    Icon?: ElementType;
     theme?: "primary" | "secondary" | "tertiary" | "destructive";
     glow?: boolean;
     extraclass?: string;
@@ -31,7 +33,8 @@ export default function PrimaryButton({
     return (
         <button 
             className={`
-                squircle inline-flex items-center justify-center w-fit h-fit rounded-full px-3 py-1.5
+                squircle inline-flex items-center justify-center gap-x-1.5
+                w-fit h-fit rounded-full px-3 py-1.5
                 text-lg font-medium tracking-tight 
                 hover:scale-105 cursor-pointer
                 ${themeStyles[theme]} 
@@ -40,6 +43,7 @@ export default function PrimaryButton({
             `}
             style={{ transition: "box-shadow 0.3s ease, scale 0.3s cubic-bezier(0.16,1,0.3,1)" }}
         >
+            {Icon && <Icon strokeWidth={3} className="size-[1.02em]"/>}
             {text}
         </button>
     );
