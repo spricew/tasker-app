@@ -33,9 +33,9 @@ export default function TertiaryButton({
     };
 
     const combinedClasses = `
-        inline-flex items-center justify-center w-fit h-fit px-2 py-1
+        inline-flex items-center justify-center w-fit h-fit p-1
         text-lg font-medium tracking-tight
-        hover:scale-105 cursor-pointer transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]
+        hover:scale-102 cursor-pointer transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]
         ${themeStyles[theme]} 
         ${extraclass}
         ${(props as ButtonHTMLAttributes<HTMLButtonElement>).disabled ? "opacity-50 cursor-not-allowed pointer-events-none" : ""}
