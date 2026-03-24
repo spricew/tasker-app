@@ -1,10 +1,10 @@
 "use client";
-import { ElementType, ButtonHTMLAttributes, AnchorHTMLAttributes } from "react";
+import { ButtonHTMLAttributes, AnchorHTMLAttributes } from "react";
 import Link from "next/link";
 
 interface BaseProps {
     text?: string;
-    Icon?: ElementType;
+    Icon?: React.ReactNode;
     iconPosition?: "left" | "right";
     theme?: "primary" | "secondary" | "tertiary" | "destructive";
     glow?: boolean;
@@ -56,9 +56,9 @@ export default function PrimaryButton({
 
     const innerContent = (
         <>
-            {Icon && iconPosition === "left" && <Icon strokeWidth={3} className="size-[1.02em]"/>}
+            {Icon && iconPosition === "left" && Icon}
             {text && <span>{text}</span>}
-            {Icon && iconPosition === "right" && <Icon strokeWidth={3} className="size-[1.02em]"/>}
+            {Icon && iconPosition === "right" && Icon}
         </>
     );
 
