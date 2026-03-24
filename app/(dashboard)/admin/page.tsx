@@ -1,6 +1,8 @@
 import PrimaryButton from "@/components/ui/Buttons/PrimaryButton";
 import TertiaryButton from "@/components/ui/Buttons/TertiaryButton";
 
+import { Plus } from "lucide-react";
+
 export default function Adminr() {
     return (
         <div className="flex flex-col flex-1 gap-y-8 px-18 py-12">
@@ -12,6 +14,7 @@ export default function Adminr() {
 
                 <PrimaryButton
                     text="Crear usuario"
+                    Icon={Plus}
                     glow
                 />
             </header>
