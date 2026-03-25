@@ -4,7 +4,7 @@ import TableRow from "@/components/ui/TableRow";
 export default async function UsersTable() {
 
     const users = await prisma.user.findMany({
-        orderBy: { createdAt: 'desc' } // Los ordenamos por fecha de creación
+        orderBy: { createdAt: 'desc' }
     });
     return (
         <div className="squircle rounded-2xl bg-surface-container-lowest shadow-xs">
@@ -18,13 +18,12 @@ export default async function UsersTable() {
                     </tr>
                 </thead>
                 <tbody>
-                    {/* 4. Mapeamos los usuarios reales de la base de datos */}
                     {users.map((user) => (
                         <TableRow
                             key={user.id}
-                            name={user.nombre} // Cambiado a 'nombre' (como en el schema)
+                            name={user.nombre}
                             email={user.email}
-                            role={user.rol}    // Cambiado a 'rol' (como en el schema)
+                            role={user.rol}
                         />
                     ))}
                 </tbody>
