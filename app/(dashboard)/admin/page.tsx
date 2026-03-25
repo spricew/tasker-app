@@ -3,7 +3,7 @@ import TertiaryButton from "@/components/ui/Buttons/TertiaryButton";
 
 import { Plus, Pencil, Trash2 } from "lucide-react";
 
-export default function Adminr() {
+export default function Admin() {
     return (
         <div className="flex flex-col flex-1 gap-y-8 px-18 py-12">
             <header className="flex justify-between items-center">
