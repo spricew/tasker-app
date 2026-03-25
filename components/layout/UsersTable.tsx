@@ -1,5 +1,5 @@
-import TableRow from "@/components/ui/TableRow";
 import prisma from "@/lib/db";
+import TableRow from "@/components/ui/TableRow";
 
 export default async function UsersTable() {
 
