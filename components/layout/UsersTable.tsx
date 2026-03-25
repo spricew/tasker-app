@@ -1,11 +1,9 @@
-import prisma from "@/lib/db";
+import { getAllUsers } from "@/lib/data/users";
 import TableRow from "@/components/ui/TableRow";
 
 export default async function UsersTable() {
 
-    const users = await prisma.user.findMany({
-        orderBy: { createdAt: 'desc' }
-    });
+    const users = await getAllUsers();
     return (
         <div className="squircle rounded-2xl bg-surface-container-lowest shadow-xs">
             <table className="w-full text-sm text-left rtl:text-right text-body">
