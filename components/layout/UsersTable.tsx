@@ -14,7 +14,7 @@ export default async function UsersTable() {
                         <th scope="col" className="tracking-tight text-base px-6 py-5 font-medium">Nombre completo</th>
                         <th scope="col" className="tracking-tight text-base px-6 py-5 font-medium">Email</th>
                         <th scope="col" className="tracking-tight text-base px-6 py-5 font-medium">Rol</th>
-                        <th scope="col" className="tracking-tight text-base px-6 py-5 font-medium text-center">Actions</th>
+                        <th scope="col" className="tracking-tight text-base px-6 py-5 font-medium text-center">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
