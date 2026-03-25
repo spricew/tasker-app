@@ -17,7 +17,7 @@ export default function TableRow({ name, email, role }: TableRowProps) {
                 {email}
             </td>
             <td className="px-6 py-4">
-                {role}
+                {role === "ADMIN" ? "Administrador" : "Usuario"}
             </td>
             <td className="flex justify-center items-center px-6 py-4 gap-2">
                 <TertiaryButton Icon={<Pencil strokeWidth={2.6} className="size-6" />} theme="secondary" />
