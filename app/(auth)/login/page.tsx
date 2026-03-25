@@ -16,7 +16,7 @@ export default function Login() {
 
           <span className="text-base font-light">Eleva tu productividad</span>
         </header>
-        <form className="flex flex-col w-100 gap-3" action="">
+        <form className="flex flex-col w-100 gap-3">
           <PrimaryInput label="email" placeholder="email@example.com" />
           <PrimaryInput label="contraseña" placeholder="••••••••" type="password" />
           <PrimaryButton text="Iniciar sesión" extraclass="w-full"/>
