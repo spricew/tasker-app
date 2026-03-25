@@ -18,7 +18,7 @@ export async function POST(request: Request) {
 
   } catch (error: any) {
     if (error.message === "El correo ya está registrado") {
-      return NextResponse.json({ error: error.message }, { status: 409 }); // 409 Conflict
+      return NextResponse.json({ error: error.message }, { status: 409 });
     }
     
     return NextResponse.json({ error: 'Hubo un error en el servidor' }, { status: 500 });
