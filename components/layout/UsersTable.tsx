@@ -5,14 +5,14 @@ export default async function UsersTable() {
 
     const users = await getAllUsers();
     return (
-        <div className="squircle rounded-2xl bg-surface-container-lowest shadow-xs">
+        <div className="squircle rounded-2xl bg-surface-container-lowest shadow-xs overflow-hidden">
             <table className="w-full text-sm text-left rtl:text-right text-body">
                 <thead className="text-sm border-b border-outline-variant">
-                    <tr>
-                        <th scope="col" className="tracking-tight text-base px-6 py-5 font-medium">Nombre completo</th>
-                        <th scope="col" className="tracking-tight text-base px-6 py-5 font-medium">Email</th>
-                        <th scope="col" className="tracking-tight text-base px-6 py-5 font-medium">Rol</th>
-                        <th scope="col" className="tracking-tight text-base px-6 py-5 font-medium text-center">Acciones</th>
+                    <tr className="text-ref-palette-neutral-60">
+                        <th scope="col" className="tracking-tight text-base px-6 py-4 font-medium">Nombre completo</th>
+                        <th scope="col" className="tracking-tight text-base px-6 py-4 font-medium">Email</th>
+                        <th scope="col" className="tracking-tight text-base px-6 py-4 font-medium">Rol</th>
+                        <th scope="col" className="tracking-tight text-base px-6 py-4 font-medium text-center">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
