@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { createUserByAdmin } from "@/lib/api/users";
+import { sileo, Toaster } from "sileo";
+
 import PrimaryButton from "@/components/ui/Buttons/PrimaryButton";
 import PrimaryInput from "@/components/ui/PrimaryInput";
 import { SelectableCardGroup, SelectableCardOption } from "@/components/ui/SelectOption";
@@ -39,6 +41,20 @@ export default function CreateUserModal() {
 
             setShowModal(false);
             router.refresh();
+            sileo.success({
+                title: "Usuario registrado",
+                position: "top-center",
+                fill: "#171717",
+                autopilot: {
+                    expand: 0,
+                    collapse: 3000,
+                  },
+                description: (
+                    <span className="text-white font-medium">
+                        ¡El usuario ha sido creado exitosamente!
+                    </span>
+                ),
+            });
 
         } catch (error: any) {
             setError(error.message);
@@ -47,6 +63,8 @@ export default function CreateUserModal() {
 
     return (
         <>
+            <Toaster position="top-right" />
+
             <PrimaryButton
                 text="Crear usuario"
                 Icon={<Plus strokeWidth={3} className="size-[1.02em]" />}
@@ -73,7 +91,6 @@ export default function CreateUserModal() {
                             <PrimaryInput name="nombre" label="usuario" placeholder="userexample" />
                             <PrimaryInput name="email" label="email" placeholder="email@example.com" />
                             <PrimaryInput name="password" label="contraseña" placeholder="••••••••" type="password" />
-
                             {error && <p className=" p-2 rounded-lg text-sm text-center bg-error-container text-on-error-container">{error}</p>}
                             <PrimaryButton text="Crear usuario" extraclass="w-full" type="submit" />
                         </form>
