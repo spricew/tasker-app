@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Navbar() {
     return (
-        <header className="flex justify-between items-center min-h-24 w-full px-18 bg-surface-container-low">
+        <header className="flex justify-between items-center min-h-21 w-full px-18 bg-surface-container-lowest">
 
             <a href="/" className="flex items-center gap-x-2 cursor-pointer">
                 <img
