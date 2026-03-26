@@ -15,11 +15,10 @@ export default function CreateUserModal() {
         { id: 'role-admin', value: 'admin', title: 'Administrador', description: 'Permisos ilimitados', icon: ShieldUser },
     ];
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
         e.preventDefault();
         setShowModal(false);
         console.log("Rol seleccionado:", role);
-        // Aquí luego agregarás el fetch hacia tu API POST
     };
 
     return (
@@ -32,20 +31,20 @@ export default function CreateUserModal() {
             />
 
             {showModal && (
+                // TODO: IMPLEMENTAR BOTON PARA CERRAR MODAL
                 <div className="fixed inset-0 grid place-items-center w-full h-full overflow-y-hidden bg-black/50 z-100">
                     <div className="squircle flex flex-col gap-4 w-130 p-10 rounded-3xl bg-surface-container-low">
-                        {/* ... el resto del contenido de tu modal ... */}
                         <header className="flex flex-col">
-                             <span className="text-3xl font-semibold tracking-tighter">Crear usuario</span>
-                             <span className="text-base font-light">Ingresa los datos para crear un nuevo usuario</span>
+                            <span className="text-3xl font-semibold tracking-tighter">Crear usuario</span>
+                            <span className="text-base font-light">Ingresa los datos para crear un nuevo usuario</span>
                         </header>
-                         <form className="flex flex-col w-full gap-3">
-                             <SelectableCardGroup name="userRole" options={roleOptions} selectedValue={role} onChange={setRole} />
-                             <PrimaryInput name="nombre" label="usuario" placeholder="userexample" />
-                             <PrimaryInput name="email" label="email" placeholder="email@example.com" />
-                             <PrimaryInput name="password" label="contraseña" placeholder="••••••••" type="password" />
-                             <PrimaryButton text="Crear usuario" extraclass="w-full" onClick={handleSubmit} />
-                         </form>
+                        <form className="flex flex-col w-full gap-3" onSubmit={handleSubmit}>
+                            <SelectableCardGroup name="userRole" options={roleOptions} selectedValue={role} onChange={setRole} />
+                            <PrimaryInput name="nombre" label="usuario" placeholder="userexample" />
+                            <PrimaryInput name="email" label="email" placeholder="email@example.com" />
+                            <PrimaryInput name="password" label="contraseña" placeholder="••••••••" type="password" />
+                            <PrimaryButton text="Crear usuario" extraclass="w-full" />
+                        </form>
                     </div>
                 </div>
             )}
