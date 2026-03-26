@@ -20,8 +20,8 @@ export default function TableRow({ name, email, role }: TableRowProps) {
                 {role === "ADMIN" ? "Administrador" : "Usuario"}
             </td>
             <td className="flex justify-center items-center px-6 py-4 gap-2">
-                <TertiaryButton Icon={<Pencil strokeWidth={2.6} className="size-6" />} theme="secondary" />
-                <TertiaryButton Icon={<Trash2 strokeWidth={2.6} className="size-6" />} theme="destructive" />
+                <TertiaryButton Icon={<Pencil strokeWidth={2.4} className="size-6" />} theme="secondary" />
+                <TertiaryButton Icon={<Trash2 strokeWidth={2.4} className="size-6" />} theme="destructive" />
             </td>
         </tr>
     );
