@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation"; 
+import { useRouter } from "next/navigation";
 import { createUserByAdmin } from "@/lib/api/users";
 import PrimaryButton from "@/components/ui/Buttons/PrimaryButton";
 import PrimaryInput from "@/components/ui/PrimaryInput";
@@ -12,6 +12,7 @@ export default function CreateUserModal() {
     const router = useRouter();
     const [showModal, setShowModal] = useState(false);
     const [role, setRole] = useState('estudiante');
+    const [error, setError] = useState('');
 
     const roleOptions: SelectableCardOption[] = [
         { id: 'role-estudiante', value: 'estudiante', title: 'Estudiante', description: 'Acciones limitadas', icon: CircleUserRound },
@@ -29,18 +30,18 @@ export default function CreateUserModal() {
         const rolFormateado = role === 'admin' ? 'ADMIN' : 'USER';
 
         try {
-            await createUserByAdmin({ 
-                nombre: String(nombre), 
-                email: String(email), 
-                password: String(password), 
-                rol: rolFormateado 
+            await createUserByAdmin({
+                nombre: String(nombre),
+                email: String(email),
+                password: String(password),
+                rol: rolFormateado
             });
-            
-            setShowModal(false);
-            router.refresh(); 
 
-        } catch (error) {
-            console.error("Error al crear:", error);
+            setShowModal(false);
+            router.refresh();
+
+        } catch (error: any) {
+            setError(error.message);
         }
     };
 
@@ -64,7 +65,7 @@ export default function CreateUserModal() {
                                     ✕
                                 </button>
                             </div>
-                            
+
                             <span className="text-base font-light">Ingresa los datos para crear un nuevo usuario</span>
                         </header>
                         <form className="flex flex-col w-full gap-3" onSubmit={handleSubmit}>
@@ -72,6 +73,8 @@ export default function CreateUserModal() {
                             <PrimaryInput name="nombre" label="usuario" placeholder="userexample" />
                             <PrimaryInput name="email" label="email" placeholder="email@example.com" />
                             <PrimaryInput name="password" label="contraseña" placeholder="••••••••" type="password" />
+
+                            {error && <p className=" p-2 rounded-lg text-sm text-center bg-error-container text-on-error-container">{error}</p>}
                             <PrimaryButton text="Crear usuario" extraclass="w-full" type="submit" />
                         </form>
                     </div>
