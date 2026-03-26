@@ -9,7 +9,10 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Faltan campos obligatorios' }, { status: 400 });
     }
 
-    const newUser = await createUser(body);
+    const newUser = await createUser({
+      ...body,
+      rol: 'USER' //force "user" role
+    });
 
     return NextResponse.json({ 
         mensaje: 'Registro exitoso', 
