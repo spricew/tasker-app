@@ -43,30 +43,32 @@ export default function Admin() {
     return (
         <div className="flex flex-col flex-1 gap-y-8 px-18 py-12">
 
-            {showModal && (<div className="fixed inset-0 grid place-items-center w-full h-full overflow-y-hidden bg-black/50 z-100">
-                <div className="squircle flex flex-col gap-4 w-130 p-10 rounded-3xl bg-surface-container-low">
-                    <header className="flex flex-col">
-                        <span className="text-3xl font-semibold tracking-tighter">
-                            Crear usuario
-                        </span>
-                        <span className="text-base font-light">Ingresa los datos para crear un nuevo usuario</span>
-                    </header>
+            {showModal && (
+                <div className="fixed inset-0 grid place-items-center w-full h-full overflow-y-hidden bg-black/50 z-100">
+                    <div className="squircle flex flex-col gap-4 w-130 p-10 rounded-3xl bg-surface-container-low">
+                        <header className="flex flex-col">
+                            <span className="text-3xl font-semibold tracking-tighter">
+                                Crear usuario
+                            </span>
+                            <span className="text-base font-light">Ingresa los datos para crear un nuevo usuario</span>
+                        </header>
 
-                    <form className="flex flex-col w-full gap-3">
-                        <SelectableCardGroup
-                            name="userRole"
-                            options={roleOptions}
-                            selectedValue={role}
-                            onChange={setRole}
-                        />
+                        <form className="flex flex-col w-full gap-3">
+                            <SelectableCardGroup
+                                name="userRole"
+                                options={roleOptions}
+                                selectedValue={role}
+                                onChange={setRole}
+                            />
 
-                        <PrimaryInput name="nombre" label="usuario" placeholder="userexample" />
-                        <PrimaryInput name="email" label="email" placeholder="email@example.com" />
-                        <PrimaryInput name="password" label="contraseña" placeholder="••••••••" type="password" />
-                        <PrimaryButton text="Crear usuario" extraclass="w-full" onClick={handleSubmit}/>
-                    </form>
+                            <PrimaryInput name="nombre" label="usuario" placeholder="userexample" />
+                            <PrimaryInput name="email" label="email" placeholder="email@example.com" />
+                            <PrimaryInput name="password" label="contraseña" placeholder="••••••••" type="password" />
+                            <PrimaryButton text="Crear usuario" extraclass="w-full" onClick={handleSubmit} />
+                        </form>
+                    </div>
                 </div>
-            </div>)}
+            )}
 
             <header className="flex justify-between items-center">
                 <div>
