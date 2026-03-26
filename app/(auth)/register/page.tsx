@@ -13,7 +13,7 @@ export default function Register() {
     const router = useRouter();
     const [error, setError] = useState("");
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
         e.preventDefault();
         setError("");
 
