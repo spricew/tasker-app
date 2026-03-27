@@ -45,7 +45,6 @@ export default function CreateUserModal() {
             sileo.success({
                 title: "Usuario registrado",
                 position: "top-center",
-                fill: "#171717",
                 duration: 3000,
                 autopilot: {
                     expand: 0,
@@ -63,7 +62,6 @@ export default function CreateUserModal() {
             sileo.error({
                 title: "Error al crear usuario",
                 position: "top-center",
-                fill: "#171717",
                 autopilot: {
                     expand: 0,
                     collapse: 3000,
