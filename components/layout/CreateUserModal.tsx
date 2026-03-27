@@ -73,13 +73,15 @@ export default function CreateUserModal() {
                         {error.message}
                     </span>
                 ),
-            }); 
+            });
+        } finally {
+            setError('');
         }
     };
 
     const handleCloseModal = () => {
         setShowModal(false);
-        setError('')
+        setError('');
     }
 
     return (
