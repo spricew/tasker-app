@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { createUserByAdmin } from "@/lib/api/users";
-import { sileo, Toaster } from "sileo";
+import { sileo } from "sileo";
 
 import PrimaryButton from "@/components/ui/Buttons/PrimaryButton";
 import PrimaryInput from "@/components/ui/PrimaryInput";
@@ -41,6 +41,7 @@ export default function CreateUserModal() {
 
             setShowModal(false);
             router.refresh();
+
             sileo.success({
                 title: "Usuario registrado",
                 position: "top-center",
@@ -77,7 +78,6 @@ export default function CreateUserModal() {
 
     return (
         <>
-            <Toaster position="top-right" />
 
             <PrimaryButton
                 text="Crear usuario"
