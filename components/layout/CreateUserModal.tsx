@@ -48,7 +48,7 @@ export default function CreateUserModal() {
                 autopilot: {
                     expand: 0,
                     collapse: 3000,
-                  },
+                },
                 description: (
                     <span className="text-white font-medium">
                         ¡El usuario ha sido creado exitosamente!
@@ -58,6 +58,20 @@ export default function CreateUserModal() {
 
         } catch (error: any) {
             setError(error.message);
+            sileo.error({
+                title: "Error al crear usuario",
+                position: "top-center",
+                fill: "#171717",
+                autopilot: {
+                    expand: 0,
+                    collapse: 3000,
+                },
+                description: (
+                    <span className="text-white font-medium">
+                        ¡Ocurrió un error al crear el usuario!
+                    </span>
+                ),
+            }); 
         }
     };
 
