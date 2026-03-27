@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getAllUsers, createUser } from '@/lib/data/users'; 
+import { getAllUsers, createUser, deleteUserById } from '@/lib/data/users';
 
 export async function GET() {
   try {
@@ -20,16 +20,16 @@ export async function POST(request: Request) {
 
     const newUser = await createUser(body);
 
-    return NextResponse.json({ 
-        mensaje: 'Usuario creado exitosamente',
-        usuario: newUser
+    return NextResponse.json({
+      mensaje: 'Usuario creado exitosamente',
+      usuario: newUser
     }, { status: 201 });
 
   } catch (error: any) {
     if (error.message === "El correo ya está registrado") {
-        return NextResponse.json({ error: error.message }, { status: 409 });
+      return NextResponse.json({ error: error.message }, { status: 409 });
     }
-    
+
     return NextResponse.json({ error: 'Hubo un error en el servidor' }, { status: 500 });
   }
 }
