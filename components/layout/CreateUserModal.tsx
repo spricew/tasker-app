@@ -70,7 +70,7 @@ export default function CreateUserModal() {
                 },
                 description: (
                     <span className="text-white font-medium">
-                        ¡Ocurrió un error al crear el usuario!
+                        {error.message}
                     </span>
                 ),
             }); 
