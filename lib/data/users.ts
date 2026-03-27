@@ -52,3 +52,18 @@ export async function createUser(data: {
         }
     }
 }
+
+export async function deleteUser(id: string) {
+    try {
+
+        const deletedUser = await prisma.user.delete({
+            where: {
+                id: id
+            }
+        });
+        return deletedUser;
+    } catch (error) {
+        console.error("Error eliminando usuario en la BD:", error);
+        throw new Error("No se pudo eliminar el usuario");
+    }
+}
