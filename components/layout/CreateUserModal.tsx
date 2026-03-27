@@ -77,6 +77,11 @@ export default function CreateUserModal() {
         }
     };
 
+    const handleCloseModal = () => {
+        setShowModal(false);
+        setError('')
+    }
+
     return (
         <>
 
@@ -94,7 +99,7 @@ export default function CreateUserModal() {
 
                             <div className="flex justify-between items-start">
                                 <span className="text-3xl font-semibold tracking-tighter">Crear usuario</span>
-                                <button onClick={() => setShowModal(false)} className="text-gray-500 hover:text-gray-800">
+                                <button onClick={handleCloseModal} className="text-gray-500 hover:text-gray-800">
                                     ✕
                                 </button>
                             </div>
