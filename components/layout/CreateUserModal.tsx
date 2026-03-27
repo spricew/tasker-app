@@ -46,9 +46,10 @@ export default function CreateUserModal() {
                 title: "Usuario registrado",
                 position: "top-center",
                 fill: "#171717",
+                duration: 3000,
                 autopilot: {
                     expand: 0,
-                    collapse: 3000,
+                    collapse: 2000,
                 },
                 description: (
                     <span className="text-white font-medium">
