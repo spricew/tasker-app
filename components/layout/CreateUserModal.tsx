@@ -14,7 +14,6 @@ export default function CreateUserModal() {
     const router = useRouter();
     const [showModal, setShowModal] = useState(false);
     const [role, setRole] = useState('estudiante');
-    const [error, setError] = useState('');
 
     const roleOptions: SelectableCardOption[] = [
         { id: 'role-estudiante', value: 'estudiante', title: 'Estudiante', description: 'Acciones limitadas', icon: CircleUserRound },
@@ -58,13 +57,13 @@ export default function CreateUserModal() {
             });
 
         } catch (error: any) {
-            setError(error.message);
             sileo.error({
                 title: "Error al crear usuario",
                 position: "top-center",
+                duration: 4500,
                 autopilot: {
                     expand: 0,
-                    collapse: 3000,
+                    collapse: 3500,
                 },
                 description: (
                     <span className="text-white font-medium">
@@ -72,19 +71,11 @@ export default function CreateUserModal() {
                     </span>
                 ),
             });
-        } finally {
-            setError('');
         }
     };
 
-    const handleCloseModal = () => {
-        setShowModal(false);
-        setError('');
-    }
-
     return (
         <>
-
             <PrimaryButton
                 text="Crear usuario"
                 Icon={<Plus strokeWidth={3} className="size-[1.02em]" />}
@@ -99,7 +90,7 @@ export default function CreateUserModal() {
 
                             <div className="flex justify-between items-start">
                                 <span className="text-3xl font-semibold tracking-tighter">Crear usuario</span>
-                                <button onClick={handleCloseModal} className="text-gray-500 hover:text-gray-800">
+                                <button onClick={() => (setShowModal(false))} className="text-gray-500 hover:text-gray-800">
                                     ✕
                                 </button>
                             </div>
@@ -111,7 +102,6 @@ export default function CreateUserModal() {
                             <PrimaryInput name="nombre" label="usuario" placeholder="userexample" />
                             <PrimaryInput name="email" label="email" placeholder="email@example.com" />
                             <PrimaryInput name="password" label="contraseña" placeholder="••••••••" type="password" />
-                            {error && <p className=" p-2 rounded-lg text-sm text-center bg-error-container text-on-error-container">{error}</p>}
                             <PrimaryButton text="Crear usuario" extraclass="w-full" type="submit" />
                         </form>
                     </div>
