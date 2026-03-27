@@ -5,7 +5,7 @@
   box-sizing: border-box;
 } */
 
-@theme inline{
+@theme inline {
     --color-black-primary: #1b1b1b;
     --color-on-black-primary: #FFFFFF;
     --color-black-primary-container: #1B1B1B;
@@ -21,7 +21,7 @@
     --color-primary-background: color-mix(in oklch, var(--color-ref-palette-primary-50) 10%, transparent);
     --color-secondary-background: color-mix(in oklch, var(--color-ref-palette-secondary-80) 10%, transparent);
     --color-tertiary-background: color-mix(in oklch, var(--color-ref-palette-tertiary-40) 10%, transparent);
-    
+
     --color-error: #BA1A1A;
     --color-on-error: #FFFFFF;
     --color-error-container: #FFDAD6;
@@ -35,7 +35,7 @@
     --color-outline: #7E7576;
     --color-outline-variant: #C3C3C3;
     --color-inverse-surface: #303030;
-    
+
     --color-surface-tint: #5E5E5E;
     --color-surface-bright: #F9F9F9;
     --color-surface-container-lowest: #FFFFFF;
@@ -211,4 +211,8 @@ body {
         corner-shape: squircle;
         border-radius: 4em;
     }
+}
+
+[data-sileo-viewport]{
+    z-index: 9999 !important;
 }
