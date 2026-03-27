@@ -21,3 +21,16 @@ export async function createUserByAdmin(data: CreateUserData) {
 
   return res.json();
 }
+
+export async function deleteUserById(id: string) {
+  const res = await fetch(`/api/users/${id}`, {
+    method: "DELETE",
+  });
+
+  if (!res.ok) {
+    const errorData = await res.json();
+    throw new Error(errorData.error || "Error al eliminar el usuario");
+  }
+
+  return res.json();
+}
