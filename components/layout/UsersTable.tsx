@@ -19,6 +19,7 @@ export default async function UsersTable() {
                     {users.map((user) => (
                         <TableRow
                             key={user.id}
+                            id={user.id}
                             name={user.nombre}
                             email={user.email}
                             role={user.rol}
