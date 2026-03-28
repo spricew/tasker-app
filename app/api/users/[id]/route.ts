@@ -11,6 +11,6 @@ export async function DELETE(request: Request, { params }: { params: Promise<{ i
     return NextResponse.json({ mensaje: 'Usuario eliminado correctamente' }, { status: 200 });
   } catch (error) {
     console.error("Fallo al eliminar:", error); 
-    return NextResponse.json({ error: 'Error al eliminar. Puede que el usuario no exista.' }, { status: 500 });
+    return NextResponse.json({ error: 'Error al eliminar, puede que el usuario no exista.' }, { status: 500 });
   }
 }
