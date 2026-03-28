@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 import { deleteUserById } from "@/lib/api/users";
 import TertiaryButton from "@/components/ui/Buttons/TertiaryButton";
 import { Trash2 } from "lucide-react";
-import PrimaryButton from "./PrimaryButton";
 
 export default function DeleteUserButton({ userId }: { userId: string }) {
     const router = useRouter();
