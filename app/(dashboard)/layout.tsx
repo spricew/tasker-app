@@ -5,7 +5,7 @@ import "@/app/globals.css";
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <Toaster position="top-right" theme="dark" options={{fill: "#171717"}}/>
+      <Toaster position="top-center" theme="light" options={{fill: "#171717"}}/>
 
       <Navbar />
 
