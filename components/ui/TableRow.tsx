@@ -20,7 +20,7 @@ export default function TableRow({ id, name, email, role }: TableRowProps) {
             <td className="px-6 py-4">
                 {email}
             </td>
-            <td className="px-6 py-4">
+            <td className={`px-6 py-4 ${role === "ADMIN" ? "text-primary" : "text-on-surface"}`}>
                 {role === "ADMIN" ? "Administrador" : "Usuario"}
             </td>
             <td className="flex justify-center items-center px-6 py-4 gap-2">
