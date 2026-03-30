@@ -1,7 +1,11 @@
 import { NextResponse } from 'next/server';
 import { getAllUsers, createUser } from '@/lib/data/users';
+import { requireAdmin } from '@/lib/auth';
 
 export async function GET() {
+  const authError = await requireAdmin();
+  if (authError) return authError; 
+
   try {
     const usuarios = await getAllUsers();
     return NextResponse.json(usuarios, { status: 200 });
@@ -11,6 +15,9 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
+  const authError = await requireAdmin();
+  if (authError) return authError;
+
   try {
     const body = await request.json();
 
