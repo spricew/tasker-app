@@ -5,6 +5,13 @@ export interface CreateUserData {
   rol: 'ADMIN' | 'USER';
 }
 
+export interface UpdateUserData {
+  nombre: string;
+  email: string;
+  rol: 'ADMIN' | 'USER';
+  password?: string;
+}
+
 export async function createUserByAdmin(data: CreateUserData) {
   const res = await fetch("/api/users", {
     method: "POST",
@@ -30,6 +37,23 @@ export async function deleteUserById(id: string) {
   if (!res.ok) {
     const errorData = await res.json();
     throw new Error(errorData.error || "Error al eliminar el usuario");
+  }
+
+  return res.json();
+}
+
+export async function UpdateUserByAdmin(id: string, data: UpdateUserData) {
+  const res = await fetch(`/api/users/${id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+
+  if (!res.ok) {
+    const errorData = await res.json();
+    throw new Error(errorData.error || "Error al actualizar el usuario");
   }
 
   return res.json();
