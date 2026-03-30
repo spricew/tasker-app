@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { UpdateUserByAdmin } from "@/lib/api/users";
+import { sileo } from "sileo";
 import PrimaryButton from "@/components/ui/Buttons/PrimaryButton";
 import TertiaryButton from "@/components/ui/Buttons/TertiaryButton";
 import PrimaryInput from "@/components/ui/PrimaryInput";
@@ -45,11 +46,37 @@ export default function EditUserButton({ id, currentName, currentEmail, currentR
                 password: password || undefined // Solo lo enviamos si escribió algo
             });
 
+            sileo.success({
+                title: "Usuario actualizado",
+                duration: 3000,
+                autopilot: {
+                    expand: 0,
+                    collapse: 2000,
+                },
+                description: (
+                    <span className="text-white font-medium">
+                        ¡El usuario ha sido actualizado exitosamente!
+                    </span>
+                ),
+            });
+
             setShowModal(false);
             router.refresh();
-        } catch (error) {
+        } catch (error:any) {
             console.error("Error al actualizar:", error);
-            alert("Hubo un error al actualizar");
+            sileo.error({
+                title: "Error al actualizar el usuario",
+                duration: 4500,
+                autopilot: {
+                    expand: 0,
+                    collapse: 3500,
+                },
+                description: (
+                    <span className="text-white font-medium">
+                        {error.message}
+                    </span>
+                ),
+            });
         }
     };
 
