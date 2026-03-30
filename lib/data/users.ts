@@ -67,3 +67,40 @@ export async function deleteUser(id: string) {
         throw new Error("No se pudo eliminar el usuario");
     }
 }
+
+export async function updateUser(id: string, data: {
+    nombre: string;
+    email: string;
+    rol: 'ADMIN' | 'USER';
+    password?: string;
+}) {
+    try {
+        const dataToUpdate: any = {
+            nombre: data.nombre,
+            email: data.email,
+            rol: data.rol,
+        };
+
+        if (data.password && data.password.trim() !== "") {
+            const salt = await bcrypt.genSalt(10);
+            dataToUpdate.password = await bcrypt.hash(data.password, salt);
+        }
+
+        const updatedUser = await prisma.user.update({
+            where: { id: id },
+            data: dataToUpdate,
+            select: { id: true, nombre: true, email: true, rol: true }
+        });
+
+        return updatedUser;
+
+    } catch (error: any) {
+        console.error("Error actualizando usuario en la BD:", error);
+
+        // Si Prisma falla porque el email ya lo tiene otra persona (Error P2002)
+        if (error.code === 'P2002') {
+            throw new Error("El correo ya está en uso por otro usuario");
+        }
+        throw new Error("No se pudo actualizar el usuario");
+    }
+}
