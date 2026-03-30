@@ -13,7 +13,7 @@ interface TableRowProps {
 export default function TableRow({ id, name, email, role }: TableRowProps) {
     return (
         <tr className="border-b border-outline-variant nth-last-[1]:border-0">
-            <td scope="row" className="px-6 py-4 font-medium text-heading whitespace-nowrap">
+            <td scope="row" className="px-6 py-4 font-medium text-heading whitespace-nowrap capitalize">
                 {name}
             </td>
             <td className="px-6 py-4">
