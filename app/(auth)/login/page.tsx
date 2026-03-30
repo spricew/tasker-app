@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { loginUser } from "@/lib/api/auth";
 import { sileo } from "sileo";
 import PrimaryButton from "@/components/ui/Buttons/PrimaryButton";
+import TertiaryButton from "@/components/ui/Buttons/TertiaryButton";
 import PrimaryInput from "@/components/ui/PrimaryInput";
 
 export default function Login() {
@@ -78,6 +79,7 @@ export default function Login() {
           <span className="text-sm text-ref-palette-neutral-50">
             ¿Nuevo en Tasker?
           </span>
+          <TertiaryButton text="Crea una cuenta" theme="primary" href="/register" extraclass="text-sm" />
         </div>
       </main>
     </div>
