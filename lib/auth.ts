@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import jwt from 'jsonwebtoken';
 import { cookies } from 'next/headers';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'mi_clave_super_secreta_123';
+const JWT_SECRET= process.env.JWT_SECRET as string;
 
 export async function requireAdmin() {
     try {
