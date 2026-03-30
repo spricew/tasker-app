@@ -1,6 +1,7 @@
 'use client';
 import TertiaryButton from "@/components/ui/Buttons/TertiaryButton";
 import DeleteUserButton from "@/components/ui/Buttons/DeleteUserButton";
+import EditUserButton from "./Buttons/EditUserButton";
 import { Pencil } from "lucide-react";
 
 interface TableRowProps {
@@ -23,7 +24,12 @@ export default function TableRow({ id, name, email, role }: TableRowProps) {
                 {role === "ADMIN" ? "Administrador" : "Usuario"}
             </td>
             <td className="flex justify-center items-center px-6 py-4 gap-2">
-                <TertiaryButton Icon={<Pencil strokeWidth={2.4} className="size-6" />} theme="secondary" />
+                <EditUserButton
+                    id={id}
+                    currentName={name}
+                    currentEmail={email}
+                    currentRole={role}
+                />
                 <DeleteUserButton userId={id} />
             </td>
         </tr>
