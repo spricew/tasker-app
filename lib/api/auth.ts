@@ -20,3 +20,25 @@ export async function registerUser(data: RegisterData) {
 
   return res.json();
 }
+
+export interface LoginData {
+  email: string;
+  password?: string;
+}
+
+export async function loginUser(data: LoginData) {
+  const res = await fetch("/api/auth/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+
+  if (!res.ok) {
+    const errorData = await res.json();
+    throw new Error(errorData.error || "Ocurrió un error al iniciar sesión");
+  }
+
+  return res.json();
+}
