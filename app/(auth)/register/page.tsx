@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { registerUser } from "@/lib/api/auth";
+import { sileo } from "sileo";
 
 import Image from "next/image";
 import PrimaryButton from "@/components/ui/Buttons/PrimaryButton";
@@ -24,6 +25,21 @@ export default function Register() {
 
         try {
             await registerUser({ nombre: String(nombre), email: String(email), password: String(password) });
+            sileo.success({
+                title: "Usuario registrado",
+                position: "top-center",
+                duration: 3000,
+                autopilot: {
+                    expand: 0,
+                    collapse: 2000,
+                },
+                description: (
+                    <span className="text-white font-medium">
+                        ¡El usuario ha sido creado exitosamente!
+                    </span>
+                ),
+            });
+
             router.push("/login");
         } catch (error: any) {
             setError(error.message);
