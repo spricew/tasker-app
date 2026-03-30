@@ -36,16 +36,13 @@ export default function DeleteUserButton({ userId }: { userId: string }) {
         try {
             await deleteUserById(userId);
             router.refresh();
+            sileo.dismiss(id);
         } catch (error:any) {
             console.error(error);
             sileo.error({
                 title: "Error al eliminar usuario",
                 position: "top-center",
                 duration: 4500,
-                autopilot: {
-                    expand: 0,
-                    collapse: 3500,
-                },
                 description: (
                     <span className="text-white font-medium">
                         {error.message}
@@ -54,7 +51,6 @@ export default function DeleteUserButton({ userId }: { userId: string }) {
             });
         } finally {
             setIsDeleting(false);
-            sileo.dismiss(id);
         }
     };
 
