@@ -1,4 +1,3 @@
-// src/components/ui/Buttons/EditUserModal.tsx
 "use client";
 
 import { useState } from "react";
@@ -21,7 +20,6 @@ export default function EditUserButton({ id, currentName, currentEmail, currentR
     const router = useRouter();
     const [showModal, setShowModal] = useState(false);
 
-    // Inicializamos el estado con el rol que ya tiene el usuario en la BD
     const initialRole = currentRole === 'ADMIN' ? 'admin' : 'estudiante';
     const [role, setRole] = useState(initialRole);
 
@@ -48,7 +46,7 @@ export default function EditUserButton({ id, currentName, currentEmail, currentR
             });
 
             setShowModal(false);
-            router.refresh(); // Magia: Recargamos la tabla
+            router.refresh();
         } catch (error) {
             console.error("Error al actualizar:", error);
             alert("Hubo un error al actualizar");
@@ -57,12 +55,10 @@ export default function EditUserButton({ id, currentName, currentEmail, currentR
 
     return (
         <>
-            {/* El botón del lápiz */}
             <div onClick={() => setShowModal(true)} className="cursor-pointer">
                 <TertiaryButton Icon={<Pencil strokeWidth={2.6} className="size-6" />} theme="secondary" />
             </div>
 
-            {/* El Modal (Se parece mucho al de crear, pero con defaultValue) */}
             {showModal && (
                 <div className="fixed inset-0 grid place-items-center w-full h-full overflow-y-hidden bg-black/50 z-100">
                     <div className="squircle flex flex-col gap-4 w-130 p-10 rounded-3xl bg-surface-container-low">
@@ -76,7 +72,6 @@ export default function EditUserButton({ id, currentName, currentEmail, currentR
                         <form className="flex flex-col w-full gap-3" onSubmit={handleSubmit}>
                             <SelectableCardGroup name="userRole" options={roleOptions} selectedValue={role} onChange={setRole} />
 
-                            {/* defaultValue pone el texto actual para que el admin no tenga que escribir todo de nuevo */}
                             <PrimaryInput name="nombre" label="usuario" defaultValue={currentName} />
                             <PrimaryInput name="email" label="email" defaultValue={currentEmail} />
                             <PrimaryInput name="password" label="nueva contraseña (opcional)" placeholder="Dejar en blanco para no cambiar" type="password" />
