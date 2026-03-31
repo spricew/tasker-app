@@ -42,3 +42,20 @@ export async function loginUser(data: LoginData) {
 
   return res.json();
 }
+
+export async function requestPasswordReset(email: string) {
+  const res = await fetch("/api/auth/recover", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email }),
+  });
+
+  if (!res.ok) {
+    const errorData = await res.json();
+    throw new Error(errorData.error || "Error al solicitar recuperación");
+  }
+
+  return res.json();
+}
