@@ -1,8 +1,6 @@
 'use client';
-import TertiaryButton from "@/components/ui/Buttons/TertiaryButton";
 import DeleteUserButton from "@/components/ui/Buttons/DeleteUserButton";
 import EditUserButton from "./Buttons/EditUserButton";
-import { Pencil } from "lucide-react";
 
 interface TableRowProps {
     id: string;
