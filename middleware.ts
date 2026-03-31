@@ -21,10 +21,10 @@ export function middleware(request: NextRequest) {
                 return NextResponse.redirect(new URL('/student', request.url));
             }
 
-            if (isAuthRoute) {
-                const redirectUrl = usuario.rol === 'ADMIN' ? '/admin' : '/student';
-                return NextResponse.redirect(new URL(redirectUrl, request.url));
-            }
+            // if (isAuthRoute) {
+            //     const redirectUrl = usuario.rol === 'ADMIN' ? '/admin' : '/student';
+            //     return NextResponse.redirect(new URL(redirectUrl, request.url));
+            // }
 
         } catch (error) {
             const response = NextResponse.redirect(new URL('/login', request.url));
