@@ -44,7 +44,7 @@ function ResetForm() {
 
             setTimeout(() => {
                 router.push("/login");
-            }, 10013000);
+            }, 3000);
 
         } catch (err: any) {
             setError(err.message);
