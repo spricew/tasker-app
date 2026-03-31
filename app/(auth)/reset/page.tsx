@@ -44,7 +44,7 @@ function ResetForm() {
 
             setTimeout(() => {
                 router.push("/login");
-            }, 103000);
+            }, 10013000);
 
         } catch (err: any) {
             setError(err.message);
@@ -66,6 +66,7 @@ function ResetForm() {
     if (success) {
         return (
             <div className="squircle flex flex-col items-center gap-4 text-center">
+                <Image src={"/images/verification.png"} alt="forgot password image" width={130} height={130} className="squircle p-4 bg-primary-background rounded-2xl drop-shadow-xl" />
                 <span className="text-2xl tracking-tighter font-semibold text-primary">¡Contraseña actualizada!</span>
                 <p>Tu contraseña ha sido cambiada correctamente. Redirigiendo al inicio de sesión...</p>
             </div>
@@ -75,17 +76,17 @@ function ResetForm() {
     return (
         <>
             <header className="flex flex-col">
-                    <div className="flex flex-col gap-2">
-                        <Image src={"/images/reset-password.png"} alt="forgot password image" width={130} height={130} className="squircle p-4 bg-primary-background rounded-2xl drop-shadow-xl" />
-                        <span className="text-3xl font-semibold tracking-tighter">
-                            Crear nueva contraseña
-                        </span>
-                    </div>
-                    
-                    <span className="text-base font-light">
-                    Escribe tu nueva contraseña de acceso.
+                <div className="flex flex-col gap-2">
+                    <Image src={"/images/reset-password.png"} alt="forgot password image" width={130} height={130} className="squircle p-4 bg-primary-background rounded-2xl drop-shadow-xl" />
+                    <span className="text-3xl font-semibold tracking-tighter">
+                        Crear nueva contraseña
                     </span>
-                </header>
+                </div>
+
+                <span className="text-base font-light">
+                    Escribe tu nueva contraseña de acceso.
+                </span>
+            </header>
 
             <form className="flex flex-col w-full gap-3" onSubmit={handleSubmit}>
                 <PrimaryInput
