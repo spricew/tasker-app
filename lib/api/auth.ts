@@ -59,3 +59,20 @@ export async function requestPasswordReset(email: string) {
 
   return res.json();
 }
+
+export async function resetPassword(token: string, newPassword: string) {
+  const res = await fetch("/api/auth/reset", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ token, newPassword }),
+  });
+
+  if (!res.ok) {
+    const errorData = await res.json();
+    throw new Error(errorData.error || "Error al restablecer la contraseña");
+  }
+
+  return res.json();
+}
