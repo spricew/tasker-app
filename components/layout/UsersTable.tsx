@@ -1,7 +1,22 @@
 import { getAllUsers } from "@/lib/data/users";
 import TableRow from "@/components/ui/TableRow";
+import { cookies } from "next/headers";
+import jwt from "jsonwebtoken";
 
 export default async function UsersTable() {
+
+    const cookieStore = await cookies();
+    const token = cookieStore.get('tasker_token')?.value;
+    let loggedInUserId = null;
+    if (token) {
+        try {
+            const JWT_SECRET = process.env.JWT_SECRET as string;
+            const decoded = jwt.verify(token, JWT_SECRET) as { id: string };
+            loggedInUserId = decoded.id;
+        } catch (error) {
+            console.error("Error leyendo el token en la tabla");
+        }
+    }
 
     const users = await getAllUsers();
     return (
@@ -23,6 +38,7 @@ export default async function UsersTable() {
                             name={user.nombre}
                             email={user.email}
                             role={user.rol}
+                            isCurrentUser={user.id === loggedInUserId}
                         />
                     ))}
                 </tbody>
