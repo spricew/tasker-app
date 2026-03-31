@@ -6,6 +6,7 @@ import PrimaryButton from "@/components/ui/Buttons/PrimaryButton";
 import PrimaryInput from "@/components/ui/PrimaryInput";
 import TertiaryButton from "@/components/ui/Buttons/TertiaryButton";
 import { requestPasswordReset } from "@/lib/api/auth";
+import { ChevronLeft } from "lucide-react";
 
 export default function RecoverPassword() {
     const [isLoading, setIsLoading] = useState(false);
@@ -41,7 +42,7 @@ export default function RecoverPassword() {
                             Recuperar acceso
                         </span>
                     </div>
-                    
+
                     <span className="text-base font-light">
                         Ingresa tu correo para recibir un enlace de recuperación.
                     </span>
@@ -69,14 +70,14 @@ export default function RecoverPassword() {
                     </div>
                 )}
 
-                <div className="mt-2 flex justify-center">
-                    <TertiaryButton
-                        text="Volver al inicio de sesión"
-                        theme="primary"
-                        href="/login"
-                        extraclass="text-sm"
-                    />
-                </div>
+                <TertiaryButton
+                    Icon={<ChevronLeft strokeWidth={1.6} className="size-[1.6em]" />}
+                    iconPosition="left"
+                    text="Volver al inicio de sesión"
+                    theme="primary"
+                    href="/login"
+                    extraclass="text-sm mt-2"
+                />
             </main>
         </div>
     );
