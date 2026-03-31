@@ -59,7 +59,7 @@ export default function Login() {
 
   return (
     <div className="flex flex-col flex-1 items-center justify-center">
-      <main className="squircle flex flex-col gap-4 p-12 rounded-3xl bg-surface-container-low">
+      <main className="squircle flex flex-col gap-4 p-12 w-130 rounded-3xl bg-surface-container-low">
         <header className="flex flex-col">
           <div className="flex flex-col gap-2">
             <img src="/logo.png" alt="tasklist logo" className="w-16 object-center" />
@@ -70,9 +70,14 @@ export default function Login() {
 
           <span className="text-base font-light">Eleva tu productividad</span>
         </header>
-        <form className="flex flex-col w-100 gap-3" onSubmit={handleSubmit}>
+        <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
           <PrimaryInput name="email" label="Correo Electrónico" placeholder="admin@example.com" />
           <PrimaryInput name="password" label="Contraseña" type="password" placeholder="••••••••" />
+          <TertiaryButton
+            text="¿Olvidaste tu contraseña?"
+            href="/recover"
+            extraclass="text-sm text-ref-palette-neutral-40"
+          />
           <PrimaryButton text={isLoading ? "Cargando..." : "Iniciar sesión"} extraclass="w-full" />
         </form>
         <div>
