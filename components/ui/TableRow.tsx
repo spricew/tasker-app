@@ -1,19 +1,20 @@
 'use client';
 import DeleteUserButton from "@/components/ui/Buttons/DeleteUserButton";
-import EditUserButton from "./Buttons/EditUserButton";
+import EditUserButton from "@/components/ui/Buttons/EditUserButton";
 
 interface TableRowProps {
     id: string;
     name: string;
     email: string;
     role: "ADMIN" | "USER";
+    isCurrentUser?: boolean;
 }
 
-export default function TableRow({ id, name, email, role }: TableRowProps) {
+export default function TableRow({ id, name, email, role, isCurrentUser }: TableRowProps) {
     return (
-        <tr className="border-b border-outline-variant nth-last-[1]:border-0">
+        <tr className={`border-b border-outline-variant nth-last-[1]:border-0 ${isCurrentUser ? "bg-ref-palette-primary-90/30" : "bg-surface-container-lowest"}`}>
             <td scope="row" className="px-6 py-4 font-medium text-heading whitespace-nowrap capitalize">
-                {name}
+                {name} {isCurrentUser && <span className="text-primary font-semibold ml-1">(Tú)</span>}
             </td>
             <td className="px-6 py-4">
                 {email}
@@ -22,13 +23,13 @@ export default function TableRow({ id, name, email, role }: TableRowProps) {
                 {role === "ADMIN" ? "Administrador" : "Usuario"}
             </td>
             <td className="flex justify-center items-center px-6 py-4 gap-2">
-                <EditUserButton
+                {!isCurrentUser && <EditUserButton
                     id={id}
                     currentName={name}
                     currentEmail={email}
                     currentRole={role}
-                />
-                <DeleteUserButton userId={id} />
+                />}
+                {!isCurrentUser && <DeleteUserButton userId={id} />}
             </td>
         </tr>
     );
