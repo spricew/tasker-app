@@ -7,7 +7,7 @@ interface TaskItemProps extends InputHTMLAttributes<HTMLInputElement> {
 export default function TaskItem({ title, ...props }: TaskItemProps) {
   return (
     <li className="max-w-3/5">
-      <label className="flex items-center gap-x-3 w-fit bg-amber-400 cursor-pointer">
+      <label className="flex items-center gap-x-3 w-fit cursor-pointer">
         <input
           type="checkbox"
           className="peer sr-only"
