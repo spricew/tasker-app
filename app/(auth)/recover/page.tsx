@@ -71,7 +71,7 @@ export default function RecoverPassword() {
                 )}
 
                 <TertiaryButton
-                    Icon={<ChevronLeft strokeWidth={1.6} className="size-[1.6em]" />}
+                    Icon={<ChevronLeft strokeWidth={1.6} className="size-[1.6em] -mr-1" />}
                     iconPosition="left"
                     text="Volver al inicio de sesión"
                     theme="primary"
