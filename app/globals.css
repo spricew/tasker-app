@@ -1,10 +1,5 @@
 @import "tailwindcss";
 
-/* *{
-  outline: red  solid 1px;
-  box-sizing: border-box;
-} */
-
 @theme inline {
     --color-black-primary: #1b1b1b;
     --color-on-black-primary: #FFFFFF;
@@ -216,3 +211,8 @@ body {
 [data-sileo-viewport]{
     z-index: 9999 !important;
 }
+
+/* *{
+  outline: red  solid 1px;
+  box-sizing: border-box;
+} */
