@@ -27,3 +27,18 @@ export async function requireAdmin() {
         return NextResponse.json({ error: 'Sesión inválida o expirada' }, { status: 401 });
     }
 }
+
+export async function getUserIdFromToken() {
+    const cookieStore = await cookies();
+    const token = cookieStore.get('tasker_token')?.value;
+  
+    if (!token) return null;
+  
+    try {
+      const JWT_SECRET = process.env.JWT_SECRET as string;
+      const decoded = jwt.verify(token, JWT_SECRET) as { id: string };
+      return decoded.id;
+    } catch (error) {
+      return null;
+    }
+  }
