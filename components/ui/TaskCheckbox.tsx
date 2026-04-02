@@ -1,10 +1,10 @@
 import { InputHTMLAttributes } from "react";
 
 interface TaskCheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
-  label: string;
+  title: string;
 }
 
-export default function TaskCheckbox({ label, ...props }: TaskCheckboxProps) {
+export default function TaskCheckbox({ title, ...props }: TaskCheckboxProps) {
   return (
     <label className="flex items-center gap-x-3 cursor-pointer">
       <input
@@ -20,7 +20,7 @@ export default function TaskCheckbox({ label, ...props }: TaskCheckboxProps) {
       <span className="text-lg font-medium tracking-tight
        peer-checked:text-gray-400 peer-checked:line-through select-none
         transition-all duration-200">
-        {label}
+        {title}
       </span>
     </label>
   );
