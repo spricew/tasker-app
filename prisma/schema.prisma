@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url = env("DATABASE_URL")
+  url      = env("DATABASE_URL")
 }
 
 // rol type definition
@@ -18,8 +18,21 @@ model User {
   id        String   @id @default(uuid())
   nombre    String
   email     String   @unique
-  password  String   // store the hashed password
+  password  String // store the hashed password
   rol       Role     @default(USER)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  task Task[]
+}
+
+model Task {
+  id        String   @id @default(cuid())
+  title     String
+  completed Boolean  @default(false)
+  
+  // Relación con el estudiante
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade) // cascade para borrar tareas cuando se borran los usuarios
+  
+  createdAt DateTime @default(now())
 }
