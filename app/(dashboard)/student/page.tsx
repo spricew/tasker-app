@@ -3,7 +3,7 @@ import { Plus } from "lucide-react";
 export default function Student() {
 
     const dateString = new Date().toLocaleDateString('es-MX', {
-        year: 'numeric',
+        weekday: 'long',
         month: 'long',
         day: 'numeric',
     });
