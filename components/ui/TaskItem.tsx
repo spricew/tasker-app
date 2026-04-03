@@ -2,38 +2,72 @@
 
 import { useState } from "react";
 import { InputHTMLAttributes } from "react";
-import { Check } from "lucide-react";
+import { Check, Trash2 } from "lucide-react";
+import { toggleTask, deleteTask } from "@/lib/api/tasks";
+import { useRouter } from "next/navigation";
 
 interface TaskItemProps extends InputHTMLAttributes<HTMLInputElement> {
+  id: string;
   title: string;
   completed: boolean;
 }
 
-export default function TaskItem({ title, completed, ...props }: TaskItemProps) {
-  const [isCompleted, setIsCompleted] = useState(completed);
+export default function TaskItem({ id, title, completed, ...props }: TaskItemProps) {
+  const router = useRouter();
 
-  const handleToggle = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setIsCompleted(e.target.checked);
+  const [isCompleted, setIsCompleted] = useState(completed);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  const handleToggle = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const nuevoEstado = e.target.checked;
+
+    setIsCompleted(nuevoEstado);
+
+    try {
+      setIsLoading(true);
+      await toggleTask(id, nuevoEstado);
+      router.refresh();
+    } catch (error) {
+      console.error(error);
+      setIsCompleted(!nuevoEstado);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
+  const handleDelete = async () => {
+    try {
+      setIsDeleting(true);
+      await deleteTask(id);
+      router.refresh();
+    } catch (error) {
+      console.error(error);
+      setIsDeleting(false);
+    }
+  };
+
+  if (isDeleting) return null;
+
   return (
-    <li className="max-w-3/5">
-      <label className="flex items-center gap-x-3 w-fit cursor-pointer">
+    <li className="flex items-center justify-between gap-x-4 max-w-xl group">
+      <label className={`flex items-center gap-x-3 w-fit ${isLoading ? 'cursor-wait opacity-80' : 'cursor-pointer'}`}>
         <input
           type="checkbox"
           className="peer sr-only"
           checked={isCompleted}
           onChange={handleToggle}
+          disabled={isLoading || isDeleting}
           {...props}
         />
 
-        <div className="flex items-center justify-center shrink-0 size-[1.5em] rounded-full ring-2 ring-outline-variant
+        <div className="shrink-0 size-[1.5em] flex items-center justify-center rounded-full ring-2 ring-outline-variant
          peer-checked:bg-primary peer-checked:ring-primary 
-         transition-all duration-200">
-            {isCompleted && (
-              <Check className="text-white size-4 stroke-3"/>
-            )}
-         </div>
+         transition-all duration-200 ease-in-out">
+          {isCompleted && (
+            <Check className="text-white size-4 stroke-3" />
+          )}
+        </div>
 
         <span className="text-lg font-medium tracking-tight line-clamp-2 leading-tight first-letter:capitalize
        peer-checked:text-gray-400 peer-checked:line-through select-none
@@ -41,6 +75,15 @@ export default function TaskItem({ title, completed, ...props }: TaskItemProps) 
           {title}
         </span>
       </label>
+
+      <button
+        onClick={handleDelete}
+        disabled={isLoading || isDeleting}
+        className="text-gray-400 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity p-2"
+        title="Eliminar tarea"
+      >
+        <Trash2 className="size-5" />
+      </button>
     </li>
   );
 }
