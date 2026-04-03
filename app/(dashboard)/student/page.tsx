@@ -34,10 +34,10 @@ export default async function Student() {
                     <p>Tienes {pendingTasks} tareas pendientes hoy.</p>
                 </div>
 
-                <span className="capitalize">{dateString}</span>
+                {/* <span className="capitalize">{dateString}</span> */}
             </header>
 
-            <ul className="flex flex-col gap-y-2">
+            <ul className="flex flex-col gap-y-4">
                 {tasks.map((task) => (
                     <TaskItem
                         key={task.id}
