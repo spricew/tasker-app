@@ -18,7 +18,7 @@ export default function TaskItem({ title, ...props }: TaskItemProps) {
          peer-checked:bg-primary peer-checked:ring-primary 
          transition-all duration-200 ease-in-out"></div>
 
-        <span className="text-lg font-medium tracking-tight line-clamp-2 leading-tight
+        <span className="text-lg font-medium tracking-tight line-clamp-2 leading-tight first-letter:capitalize
        peer-checked:text-gray-400 peer-checked:line-through select-none
        transition-all duration-200">
           {title}
