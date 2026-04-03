@@ -50,7 +50,7 @@ export default function TaskItem({ id, title, completed, ...props }: TaskItemPro
   if (isDeleting) return null;
 
   return (
-    <li className="flex items-center justify-between gap-x-4 max-w-xl group">
+    <li className="flex items-center gap-x-4 max-w-3/5 group">
       <label className={`flex items-center gap-x-3 w-fit ${isLoading ? 'cursor-wait opacity-80' : 'cursor-pointer'}`}>
         <input
           type="checkbox"
