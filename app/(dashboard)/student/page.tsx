@@ -42,6 +42,7 @@ export default async function Student() {
                     <TaskItem
                         key={task.id}
                         title={task.title}
+                        completed={task.completed}
                     />
                 ))}
             </ul>
