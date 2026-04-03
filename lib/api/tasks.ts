@@ -35,3 +35,33 @@ export async function createTask(title: string): Promise<Task> {
 
     return res.json();
 }
+
+export async function toggleTask(id: string, completed: boolean) {
+    const res = await fetch(`/api/tasks/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ completed }),
+    });
+  
+    if (!res.ok) {
+      const errorData = await res.json();
+      throw new Error(errorData.error || "No se pudo actualizar la tarea");
+    }
+  
+    return res.json();
+  }
+  
+  export async function deleteTask(id: string) {
+    const res = await fetch(`/api/tasks/${id}`, {
+      method: "DELETE",
+    });
+  
+    if (!res.ok) {
+      const errorData = await res.json();
+      throw new Error(errorData.error || "No se pudo eliminar la tarea");
+    }
+  
+    return res.json();
+  }
