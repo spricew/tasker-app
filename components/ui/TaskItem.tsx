@@ -5,6 +5,7 @@ import { InputHTMLAttributes } from "react";
 import { Check, Trash2 } from "lucide-react";
 import { toggleTask, deleteTask } from "@/lib/api/tasks";
 import { useRouter } from "next/navigation";
+import TertiaryButton from "./Buttons/TertiaryButton";
 
 interface TaskItemProps extends InputHTMLAttributes<HTMLInputElement> {
   id: string;
@@ -50,7 +51,7 @@ export default function TaskItem({ id, title, completed, ...props }: TaskItemPro
   if (isDeleting) return null;
 
   return (
-    <li className="flex items-center gap-x-4 max-w-3/5 group">
+    <li className="flex items-center gap-x-4 w-fit max-w-3/5 group">
       <label className={`flex items-center gap-x-3 w-fit ${isLoading ? 'cursor-wait opacity-80' : 'cursor-pointer'}`}>
         <input
           type="checkbox"
@@ -76,14 +77,14 @@ export default function TaskItem({ id, title, completed, ...props }: TaskItemPro
         </span>
       </label>
 
-      <button
+      <TertiaryButton
+        Icon={<Trash2 className="size-5" />}
         onClick={handleDelete}
         disabled={isLoading || isDeleting}
-        className="text-gray-400 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity p-2"
+        theme="destructive"
         title="Eliminar tarea"
-      >
-        <Trash2 className="size-5" />
-      </button>
+        extraclass="opacity-0 group-hover:opacity-100"
+      />
     </li>
   );
 }
