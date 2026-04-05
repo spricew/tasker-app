@@ -6,7 +6,7 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 export default function PrimaryInput({ label, ...props }: InputProps) {
     return (
         <div className="flex flex-col gap-1.5">
-            {label && (<label className="text-base font-medium capitalize text-neutral-500">{label}</label>)}
+            {label && (<label className="text-base font-medium first-letter:capitalize text-neutral-500">{label}</label>)}
             <input
                 type="text"
                 placeholder="text"
