@@ -71,12 +71,14 @@ export default function TaskItem({ id, title, completed, ...props }: TaskItemPro
         </div>
 
         <span className="text-lg font-medium tracking-tight line-clamp-2 leading-tight first-letter:capitalize
-       peer-checked:text-gray-400 peer-checked:line-through select-none
+       peer-checked:text-gray-400 peer-checked:line-through select-none first-letter:select-none
        transition-all duration-200">
           {title}
         </span>
       </label>
 
+
+      {/* TODO: CREAR COMPONENTE DELETETASK BUTTON> */}
       <TertiaryButton
         Icon={<Trash2 className="size-5" />}
         onClick={handleDelete}
