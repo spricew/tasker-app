@@ -1,6 +1,5 @@
-import TertiaryButton from "@/components/ui/Buttons/TertiaryButton";
+import CreateTaskButton from "@/components/ui/Buttons/CreateTaskbutton";
 import TaskItem from "@/components/ui/TaskItem";
-import { Plus } from "lucide-react";
 import { getTasksByUserId } from "@/lib/data/tasks";
 import { getUserIdFromToken } from "@/lib/auth";
 
@@ -48,11 +47,8 @@ export default async function Student() {
                 ))}
             </ul>
 
-            <TertiaryButton
-                text="Agregar tarea..."
-                iconPosition="left"
-                Icon={<Plus strokeWidth={2.4} className="size-[1.1em]" />}
-            />
+            <CreateTaskButton />
+
         </div>
     );
 }
