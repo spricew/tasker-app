@@ -40,7 +40,7 @@ export default async function Student() {
                 </div>
 
                 <div className="relative flex flex-col gap-y-2">
-                    <span className="self-end text-nowrap">{dateString}</span>
+                    <span className="self-end font-medium tracking-tight first-letter:capitalize text-nowrap">{dateString}</span>
 
                     <DynamicIsland studentName={loggedInUserName}>
                         <TertiaryButton
