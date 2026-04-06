@@ -6,6 +6,7 @@ import TertiaryButton from "@/components/ui/Buttons/TertiaryButton";
 import DynamicIsland from "@/components/ui/DynamicIsland";
 import TaskItem from "@/components/ui/TaskItem";
 import { LogOut, Pencil } from "lucide-react";
+import LogoutButton from "@/components/ui/Buttons/LogoutButton";
 
 export default async function Student() {
     const user = await getUserFromToken();
@@ -49,12 +50,7 @@ export default async function Student() {
                             iconPosition="left"
                             theme="secondary"
                         />
-                        <TertiaryButton
-                            text="Cerrar sesión"
-                            theme="destructive"
-                            Icon={<LogOut className="size-[1em] stroke-2" />}
-                            iconPosition="left"
-                        />
+                        <LogoutButton />
                     </DynamicIsland>
                 </div>
             </header>
