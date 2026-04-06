@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import jwt from 'jsonwebtoken';
 import { cookies } from 'next/headers';
 
-const JWT_SECRET= process.env.JWT_SECRET as string;
+const JWT_SECRET = process.env.JWT_SECRET as string;
 
 export async function requireAdmin() {
     try {
@@ -20,25 +20,25 @@ export async function requireAdmin() {
         }
 
         // Devolvemos 'null' para indicar que no hay ningún error y puede pasar.
-        return null; 
-        
+        return null;
+
     } catch (error) {
         // Si el token expiró o fue manipulado
         return NextResponse.json({ error: 'Sesión inválida o expirada' }, { status: 401 });
     }
 }
 
-export async function getUserIdFromToken() {
+export async function getUserFromToken() {
     const cookieStore = await cookies();
     const token = cookieStore.get('tasker_token')?.value;
-  
+
     if (!token) return null;
-  
+
     try {
-      const JWT_SECRET = process.env.JWT_SECRET as string;
-      const decoded = jwt.verify(token, JWT_SECRET) as { id: string };
-      return decoded.id;
+        // Asegúrate de usar "nombre" o "name" según lo que hayas definido al firmar el token
+        const decoded = jwt.verify(token, JWT_SECRET) as { id: string, nombre: string }; 
+        return decoded; 
     } catch (error) {
-      return null;
+        return null;
     }
-  }
+}

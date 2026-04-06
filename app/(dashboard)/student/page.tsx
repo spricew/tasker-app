@@ -1,26 +1,29 @@
-import CreateTaskButton from "@/components/ui/Buttons/CreateTaskbutton";
-import TaskItem from "@/components/ui/TaskItem";
+import { getUserFromToken } from "@/lib/auth";
 import { getTasksByUserId } from "@/lib/data/tasks";
-import { getUserIdFromToken } from "@/lib/auth";
-import DynamicIsland from "@/components/ui/DynamicIsland";
+
+import CreateTaskButton from "@/components/ui/Buttons/CreateTaskbutton";
 import TertiaryButton from "@/components/ui/Buttons/TertiaryButton";
+import DynamicIsland from "@/components/ui/DynamicIsland";
+import TaskItem from "@/components/ui/TaskItem";
 import { LogOut, Pencil } from "lucide-react";
 
 export default async function Student() {
+    const user = await getUserFromToken();
+    
+    const loggedInUserName = user?.nombre as string;
+    const userId = user?.id;
+
     let tasks: any[] = [];
 
     try {
-        const userId = await getUserIdFromToken();
-
         if (userId) {
             tasks = await getTasksByUserId(userId);
         }
-
     } catch (error) {
         console.error("Error obteniendo tareas");
     }
 
-    const pendingTasks = tasks.filter(task => !task.completed).length;
+    const pendingTasks = tasks?.filter(task => !task.completed).length || 0;
 
     const dateString = new Date().toLocaleDateString('es-MX', {
         weekday: 'long',
@@ -39,7 +42,7 @@ export default async function Student() {
                 <div className="relative flex flex-col gap-y-2">
                     <span className="self-end text-nowrap">{dateString}</span>
 
-                    <DynamicIsland studentName="Heyder manuel">
+                    <DynamicIsland studentName={loggedInUserName}>
                         <TertiaryButton
                             text="Editar perfil"
                             Icon={<Pencil className="size-[1em] stroke-2" />}
@@ -57,7 +60,7 @@ export default async function Student() {
             </header>
 
             <ul className="flex flex-col gap-y-4">
-                {tasks.map((task) => (
+                {tasks?.map((task) => (
                     <TaskItem
                         key={task.id}
                         id={task.id}
@@ -68,7 +71,6 @@ export default async function Student() {
             </ul>
 
             <CreateTaskButton />
-
         </div>
     );
 }

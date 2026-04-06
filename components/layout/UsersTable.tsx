@@ -1,15 +1,13 @@
-import { getUserIdFromToken } from "@/lib/auth";
+import { getUserFromToken } from "@/lib/auth";
 import { getAllUsers } from "@/lib/data/users";
 import TableRow from "@/components/ui/TableRow";
 
 export default async function UsersTable() {
 
-    let loggedInUserId = null;
-    try {
-        loggedInUserId = await getUserIdFromToken();
-    } catch (error) {
-        console.error("Error obteniendo usuario");
-    }
+    const user = await getUserFromToken();
+    const loggedInUserId = user?.id as string;
+
+
 
     const users = await getAllUsers();
     return (

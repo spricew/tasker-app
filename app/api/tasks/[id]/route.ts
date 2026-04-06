@@ -1,16 +1,18 @@
 import prisma from '@/lib/db';
 import { NextResponse } from 'next/server';
-import { getUserIdFromToken } from '@/lib/auth';
+import { getUserFromToken } from '@/lib/auth';
 
 export async function PATCH(request: Request, { params }: { params: Promise<{ id: string }> }) {
   try {
-    const userId = await getUserIdFromToken();
+    const user = await getUserFromToken();
+    const userId = user?.id;
+
     if (!userId) {
       return NextResponse.json({ error: 'No autorizado' }, { status: 401 });
     }
 
-    const { id: taskId } = await params; 
-    
+    const { id: taskId } = await params;
+
     const body = await request.json();
     const { completed } = body;
 
@@ -44,34 +46,36 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
 }
 
 export async function DELETE(request: Request, { params }: { params: Promise<{ id: string }> }) {
-    try {
-        const userId = await getUserIdFromToken();
-        if (!userId) {
-          return NextResponse.json({ error: 'No autorizado' }, { status: 401 });
-        }
+  try {
+    const user = await getUserFromToken();
+    const userId = user?.id;
     
-        const { id: taskId } = await params; 
-        
-        const task = await prisma.task.findUnique({
-          where: { id: taskId }
-        });
-    
-        if (!task) {
-          return NextResponse.json({ error: 'Tarea no encontrada' }, { status: 404 });
-        }
-    
-        if (task.userId !== userId) {
-          return NextResponse.json({ error: 'No tienes permiso para eliminar esta tarea' }, { status: 403 });
-        }
-    
-        await prisma.task.delete({
-          where: { id: taskId }
-        });
-    
-        return NextResponse.json({ mensaje: 'Tarea eliminada' }, { status: 200 });
-    
-      } catch (error) {
-        console.error("Error al eliminar tarea:", error);
-        return NextResponse.json({ error: 'Error al eliminar la tarea' }, { status: 500 });
-      }
+    if (!userId) {
+      return NextResponse.json({ error: 'No autorizado' }, { status: 401 });
+    }
+
+    const { id: taskId } = await params;
+
+    const task = await prisma.task.findUnique({
+      where: { id: taskId }
+    });
+
+    if (!task) {
+      return NextResponse.json({ error: 'Tarea no encontrada' }, { status: 404 });
+    }
+
+    if (task.userId !== userId) {
+      return NextResponse.json({ error: 'No tienes permiso para eliminar esta tarea' }, { status: 403 });
+    }
+
+    await prisma.task.delete({
+      where: { id: taskId }
+    });
+
+    return NextResponse.json({ mensaje: 'Tarea eliminada' }, { status: 200 });
+
+  } catch (error) {
+    console.error("Error al eliminar tarea:", error);
+    return NextResponse.json({ error: 'Error al eliminar la tarea' }, { status: 500 });
+  }
 }

@@ -30,7 +30,7 @@ export async function POST(request: Request) {
         const JWT_SECRET = process.env.JWT_SECRET as string;
 
         const token = jwt.sign(
-            { id: user.id, rol: user.rol },
+            { id: user.id, rol: user.rol, nombre: user.nombre },
             JWT_SECRET,
             { expiresIn: '8h' }
         );

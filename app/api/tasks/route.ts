@@ -1,11 +1,12 @@
 import prisma from '@/lib/db';
 import { NextResponse } from 'next/server';
 import { getTasksByUserId } from "@/lib/data/tasks";
-import { getUserIdFromToken } from '@/lib/auth';
+import { getUserFromToken } from '@/lib/auth';
 
 export async function GET() {
     try {
-        const userId = await getUserIdFromToken();
+        const user = await getUserFromToken();
+        const userId = user?.id;
         if (!userId) return NextResponse.json({ error: 'No autorizado' }, { status: 401 });
 
         const tasks = await getTasksByUserId(userId);
@@ -18,7 +19,8 @@ export async function GET() {
 
 export async function POST(request: Request) {
     try {
-        const userId = await getUserIdFromToken();
+        const user = await getUserFromToken();
+        const userId = user?.id;
         if (!userId) return NextResponse.json({ error: 'No autorizado' }, { status: 401 });
 
         const body = await request.json();
