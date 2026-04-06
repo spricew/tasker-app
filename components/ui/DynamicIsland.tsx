@@ -16,7 +16,7 @@ export default function DynamicIsland({ children, studentName }: { children: Rea
                 className="squircle bg-black text-white overflow-hidden flex items-center justify-center shadow-lg"
                 onClick={() => setVariant(variant === 'idle' ? 'expanded' : 'idle')}
             >
-                <div className="p-4 flex items-center justify-between min-h-[45px]">
+                <div className="p-4 flex items-center justify-center min-h-[45px] min-w-30">
                     
                         {variant === 'idle' && (
                             <motion.p 
