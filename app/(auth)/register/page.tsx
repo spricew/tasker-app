@@ -59,9 +59,9 @@ export default function Register() {
                 </header>
 
                 <form className="flex flex-col gap-3 w-full" onSubmit={handleSubmit}>
-                    <PrimaryInput name="nombre" label="usuario" placeholder="userexample" />
-                    <PrimaryInput name="email" label="email" placeholder="email@example.com" />
-                    <PrimaryInput name="password" label="contraseña" placeholder="••••••••" type="password" />
+                    <PrimaryInput name="nombre" label="usuario" placeholder="userexample" required minLength={8}/>
+                    <PrimaryInput name="email" label="email" placeholder="email@example.com" required minLength={16}/>
+                    <PrimaryInput name="password" label="contraseña" placeholder="••••••••" type="password" required minLength={8}/>
 
                     {error && <p className=" p-2 rounded-lg text-sm text-center bg-error-container text-on-error-container">{error}</p>}
 

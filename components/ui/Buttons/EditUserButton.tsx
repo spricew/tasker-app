@@ -62,7 +62,7 @@ export default function EditUserButton({ id, currentName, currentEmail, currentR
 
             setShowModal(false);
             router.refresh();
-        } catch (error:any) {
+        } catch (error: any) {
             console.error("Error al actualizar:", error);
             sileo.error({
                 title: "Error al actualizar el usuario",
@@ -99,9 +99,14 @@ export default function EditUserButton({ id, currentName, currentEmail, currentR
                         <form className="flex flex-col w-full gap-3" onSubmit={handleSubmit}>
                             <SelectableCardGroup name="userRole" options={roleOptions} selectedValue={role} onChange={setRole} />
 
-                            <PrimaryInput name="nombre" label="usuario" defaultValue={currentName} />
-                            <PrimaryInput name="email" label="email" defaultValue={currentEmail} />
-                            <PrimaryInput name="password" label="nueva contraseña (opcional)" placeholder="Dejar en blanco para no cambiar" type="password" />
+
+                            <PrimaryInput name="nombre" label="usuario" placeholder="userexample" required minLength={8} />
+                            <PrimaryInput name="email" label="email" placeholder="email@example.com" required minLength={16} />
+                            <PrimaryInput name="password" label="contraseña" placeholder="••••••••" type="password" required minLength={8} />
+
+                            <PrimaryInput name="nombre" label="usuario" defaultValue={currentName}  required minLength={8} />
+                            <PrimaryInput name="email" label="email" defaultValue={currentEmail} required minLength={16} />
+                            <PrimaryInput name="password" label="nueva contraseña (opcional)" placeholder="Dejar en blanco para no cambiar" type="password" required minLength={8}/>
 
                             <PrimaryButton text="Guardar cambios" extraclass="w-full" type="submit" />
                         </form>

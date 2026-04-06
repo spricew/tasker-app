@@ -97,9 +97,9 @@ export default function CreateUserModal() {
                         </header>
                         <form className="flex flex-col w-full gap-3" onSubmit={handleSubmit}>
                             <SelectableCardGroup name="userRole" options={roleOptions} selectedValue={role} onChange={setRole} />
-                            <PrimaryInput name="nombre" label="usuario" placeholder="userexample" />
-                            <PrimaryInput name="email" label="email" placeholder="email@example.com" />
-                            <PrimaryInput name="password" label="contraseña" placeholder="••••••••" type="password" />
+                            <PrimaryInput name="nombre" label="usuario" placeholder="userexample" required minLength={8} />
+                            <PrimaryInput name="email" label="email" placeholder="email@example.com" required minLength={16} />
+                            <PrimaryInput name="password" label="contraseña" placeholder="••••••••" type="password" required minLength={8} />
                             <PrimaryButton text="Crear usuario" extraclass="w-full" type="submit" />
                         </form>
                     </div>
