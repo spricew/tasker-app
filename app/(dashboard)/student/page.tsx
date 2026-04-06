@@ -2,6 +2,9 @@ import CreateTaskButton from "@/components/ui/Buttons/CreateTaskbutton";
 import TaskItem from "@/components/ui/TaskItem";
 import { getTasksByUserId } from "@/lib/data/tasks";
 import { getUserIdFromToken } from "@/lib/auth";
+import DynamicIsland from "@/components/ui/DynamicIsland";
+import TertiaryButton from "@/components/ui/Buttons/TertiaryButton";
+import { LogOut, Pencil } from "lucide-react";
 
 export default async function Student() {
     let tasks: any[] = [];
@@ -33,7 +36,24 @@ export default async function Student() {
                     <p>Tienes {pendingTasks} tareas pendientes hoy.</p>
                 </div>
 
-                <span className="capitalize">{dateString}</span>
+                <div className="relative flex flex-col gap-y-2">
+                    <span className="self-end text-nowrap">{dateString}</span>
+
+                    <DynamicIsland studentName="Heyder manuel">
+                        <TertiaryButton
+                            text="Editar perfil"
+                            Icon={<Pencil className="size-[1em] stroke-2" />}
+                            iconPosition="left"
+                            theme="secondary"
+                        />
+                        <TertiaryButton
+                            text="Cerrar sesión"
+                            theme="destructive"
+                            Icon={<LogOut className="size-[1em] stroke-2" />}
+                            iconPosition="left"
+                        />
+                    </DynamicIsland>
+                </div>
             </header>
 
             <ul className="flex flex-col gap-y-4">
