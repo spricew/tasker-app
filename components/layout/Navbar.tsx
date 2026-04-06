@@ -15,7 +15,7 @@ export default function Navbar() {
                 <span className="text-3xl tracking-tighter font-semibold text-onSurface">Tasker</span>
             </a>
 
-            <nav>
+            {/* <nav>
                 <ul className="flex gap-x-8 items-center text-xl tracking-tight font-medium text-onSurface">
                     <li>
                         <Link href="/">Inicio</Link>
@@ -24,7 +24,7 @@ export default function Navbar() {
                         <Link href="/">Soporte</Link>
                     </li>
                 </ul>
-            </nav>
+            </nav> */}
         </header>
     );
 }
