@@ -4,8 +4,13 @@ import bcrypt from 'bcryptjs';
 const prisma = new PrismaClient();
 
 async function main() {
-    const adminEmail = 'admin@tasker.com';
-    const plainPassword = 'password123';
+    const adminEmail = process.env.ADMIN_EMAIL;
+    const plainPassword = process.env.ADMIN_PASSWORD;
+
+    if (!adminEmail || !plainPassword) {
+        console.error('❌ Error: Faltan las variables ADMIN_EMAIL o ADMIN_PASSWORD en el archivo .env');
+        process.exit(1);
+    }
 
     console.log('Iniciando la siembra de datos...');
 
@@ -31,7 +36,7 @@ async function main() {
 
     console.log(`✅ ¡Administrador creado con éxito!`);
     console.log(`📧 Correo: ${admin.email}`);
-    console.log(`🔑 Contraseña: ${plainPassword}`);
+    console.log(`🔑 Contraseña: ${plainPassword}`); 
 }
 
 main()
