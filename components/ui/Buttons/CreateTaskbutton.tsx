@@ -86,13 +86,12 @@ export default function CreateTaskButton() {
                             initial={{ opacity: 0, scale: 0 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-
                             exit={{
-                                scale: 0,
+                                scale: 0.95,
                                 opacity: 0,
                                 transition: {
                                     type: "tween",
-                                    duration: 0.15,
+                                    duration: 0.1,
                                     ease: "easeOut"
                                 }
                             }}
