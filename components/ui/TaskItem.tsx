@@ -2,12 +2,11 @@
 
 import { useState } from "react";
 import { InputHTMLAttributes } from "react";
-import { Check, Trash2 } from "lucide-react";
-import { toggleTask, deleteTask } from "@/lib/api/tasks";
+import { Check } from "lucide-react";
+import { toggleTask } from "@/lib/api/tasks";
 import { useRouter } from "next/navigation";
-import TertiaryButton from "./Buttons/TertiaryButton";
 import { motion, Variants } from "framer-motion";
-
+import DeleteTaskButton from "./Buttons/DeleteTaskButton";
 
 interface TaskItemProps extends InputHTMLAttributes<HTMLInputElement> {
   id: string;
@@ -24,7 +23,6 @@ export default function TaskItem({ id, title, completed, ...props }: TaskItemPro
 
   const handleToggle = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const nuevoEstado = e.target.checked;
-
     setIsCompleted(nuevoEstado);
 
     try {
@@ -39,20 +37,6 @@ export default function TaskItem({ id, title, completed, ...props }: TaskItemPro
     }
   };
 
-  const handleDelete = async () => {
-    try {
-      setIsDeleting(true);
-      await deleteTask(id);
-      router.refresh();
-    } catch (error) {
-      console.error(error);
-      setIsDeleting(false);
-    }
-  };
-
-  if (isDeleting) return null;
-
-
   const itemVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
@@ -62,13 +46,14 @@ export default function TaskItem({ id, title, completed, ...props }: TaskItemPro
     }
   };
 
+  if (isDeleting) return null;
 
   return (
     <motion.li
       variants={itemVariants}
       className="flex items-center gap-x-4 w-fit max-w-3/5 group"
     >
-      <label className={`flex items-center gap-x-3 w-fit ${isLoading ? 'cursor-wait opacity-80' : 'cursor-pointer'}`}>
+      <label className={`flex items-center gap-x-3 w-fit ${isLoading || isDeleting ? 'cursor-wait opacity-80' : 'cursor-pointer'}`}>
         <input
           type="checkbox"
           className="peer sr-only"
@@ -93,15 +78,10 @@ export default function TaskItem({ id, title, completed, ...props }: TaskItemPro
         </span>
       </label>
 
-
-      {/* TODO: CREAR COMPONENTE DELETETASK BUTTON> */}
-      <TertiaryButton
-        Icon={<Trash2 className="size-5" />}
-        onClick={handleDelete}
-        disabled={isLoading || isDeleting}
-        theme="destructive"
-        title="Eliminar tarea"
-        extraclass="opacity-0 group-hover:opacity-100"
+      <DeleteTaskButton
+        id={id}
+        isLoading={isLoading || isDeleting}
+        onDeleteStart={() => setIsDeleting(true)}
       />
     </motion.li>
   );
