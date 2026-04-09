@@ -38,7 +38,7 @@ export default function DynamicIsland({ children, studentName }: { children: Rea
                                 animate={{ opacity: 1, filter: "blur(0)"}}
                                 exit={{ opacity: 0, filter: "blur(12px)" }}
                                 transition={{ duration: 0.3 }}
-                                className="flex flex-col gap-2 w-72 p-2"
+                                className="flex flex-col gap-2 w-72 p-2 cursor-default"
                             >
                                 {children}
                             </motion.div>
