@@ -6,6 +6,8 @@ import { Check, Trash2 } from "lucide-react";
 import { toggleTask, deleteTask } from "@/lib/api/tasks";
 import { useRouter } from "next/navigation";
 import TertiaryButton from "./Buttons/TertiaryButton";
+import { motion, Variants } from "framer-motion";
+
 
 interface TaskItemProps extends InputHTMLAttributes<HTMLInputElement> {
   id: string;
@@ -50,8 +52,22 @@ export default function TaskItem({ id, title, completed, ...props }: TaskItemPro
 
   if (isDeleting) return null;
 
+
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { type: "spring", stiffness: 300, damping: 24 }
+    }
+  };
+
+
   return (
-    <li className="flex items-center gap-x-4 w-fit max-w-3/5 group">
+    <motion.li
+      variants={itemVariants}
+      className="flex items-center gap-x-4 w-fit max-w-3/5 group"
+    >
       <label className={`flex items-center gap-x-3 w-fit ${isLoading ? 'cursor-wait opacity-80' : 'cursor-pointer'}`}>
         <input
           type="checkbox"
@@ -87,6 +103,6 @@ export default function TaskItem({ id, title, completed, ...props }: TaskItemPro
         title="Eliminar tarea"
         extraclass="opacity-0 group-hover:opacity-100"
       />
-    </li>
+    </motion.li>
   );
 }
