@@ -17,7 +17,7 @@ export default function TableRow({ id, name, email, role, isCurrentUser }: Table
             <td scope="row" className="px-6 py-4 font-medium whitespace-nowrap capitalize">
                 {name} {isCurrentUser && <Pill text="You" />}
             </td>
-            <td className="px-6 py-4">
+            <td className="text-primary px-6 py-4">
                 {email}
             </td>
             <td className={`px-6 py-4 ${role === "ADMIN" ? "text-primary" : "text-on-surface"}`}>
