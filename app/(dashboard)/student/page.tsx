@@ -6,7 +6,7 @@ import TertiaryButton from "@/components/ui/Buttons/TertiaryButton";
 import DynamicIsland from "@/components/ui/DynamicIsland";
 import LogoutButton from "@/components/ui/Buttons/LogoutButton";
 import AnimatedTaskList from "@/components/layout/AnimatedTasklist";
-import { LogOut, Pencil } from "lucide-react";
+import { Pencil } from "lucide-react";
 
 export default async function Student() {
     const user = await getUserFromToken();
