@@ -4,9 +4,9 @@ import { getTasksByUserId } from "@/lib/data/tasks";
 import CreateTaskButton from "@/components/ui/Buttons/CreateTaskbutton";
 import TertiaryButton from "@/components/ui/Buttons/TertiaryButton";
 import DynamicIsland from "@/components/ui/DynamicIsland";
-import TaskItem from "@/components/ui/TaskItem";
-import { LogOut, Pencil } from "lucide-react";
 import LogoutButton from "@/components/ui/Buttons/LogoutButton";
+import AnimatedTaskList from "@/components/layout/AnimatedTasklist";
+import { LogOut, Pencil } from "lucide-react";
 
 export default async function Student() {
     const user = await getUserFromToken();
@@ -55,16 +55,7 @@ export default async function Student() {
                 </div>
             </header>
 
-            <ul className="flex flex-col gap-y-4">
-                {tasks?.map((task) => (
-                    <TaskItem
-                        key={task.id}
-                        id={task.id}
-                        title={task.title}
-                        completed={task.completed}
-                    />
-                ))}
-            </ul>
+            <AnimatedTaskList tasks={tasks} />
 
             <CreateTaskButton />
         </div>
