@@ -7,9 +7,7 @@ import { createTask } from "@/lib/api/tasks";
 import PrimaryButton from "./PrimaryButton";
 import TertiaryButton from "./TertiaryButton";
 import PrimaryInput from "../PrimaryInput";
-import { Plus, X } from "lucide-react";
-
-import { motion, AnimatePresence } from 'framer-motion';
+import { Plus } from "lucide-react";
 import AnimatedModal from "../AnimatedModal";
 
 export default function CreateTaskButton() {
