@@ -1,6 +1,6 @@
 import Image from "next/image";
 import UsersTable from "@/components/layout/UsersTable";
-import CreateUserModal from "@/components/layout/CreateUserModal";
+import CreateUserModal from "@/components/layout/CreateUserButton";
 
 export default function Admin() {
     return (
