@@ -17,7 +17,7 @@ interface CreateUserFormProps {
 export default function CreateUserForm({ onSuccess }: CreateUserFormProps) {
     const router = useRouter();
     const [role, setRole] = useState('estudiante');
-    const [isLoading, setIsLoading] = useState(false); // Siempre es buena práctica añadir estado de carga
+    const [isLoading, setIsLoading] = useState(false);
 
     const roleOptions: SelectableCardOption[] = [
         { id: 'role-estudiante', value: 'estudiante', title: 'Estudiante', description: 'Acciones limitadas', icon: CircleUserRound },
@@ -43,7 +43,7 @@ export default function CreateUserForm({ onSuccess }: CreateUserFormProps) {
                 rol: rolFormateado
             });
 
-            onSuccess(); // Cerramos el modal
+            onSuccess();
             router.refresh();
 
             sileo.success({
