@@ -21,7 +21,7 @@ export default function DynamicIsland({ children, studentName }: { children: Rea
                         {variant === 'idle' && (
                             <motion.p 
                                 key="idle-text"
-                                initial={{ opacity: 0 }}
+                                initial={{ opacity: 0, filter: "blur(8px)" }}
                                 animate={{ opacity: 1, filter: "blur(0)" }}
                                 exit={{ opacity: 0, filter: "blur(12px)" }}
                                 transition={{ duration: 0.2 }}
