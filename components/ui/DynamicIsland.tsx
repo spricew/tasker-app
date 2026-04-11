@@ -16,7 +16,7 @@ export default function DynamicIsland({ children, studentName }: { children: Rea
                 className="squircle bg-black text-white overflow-hidden flex items-center justify-center shadow-lg"
                 onClick={() => setVariant(variant === 'idle' ? 'expanded' : 'idle')}
             >
-                <div className="p-4 flex items-center justify-center min-h-[45px] min-w-30">
+                <div className="p-3 flex items-center justify-center min-h-[45px] min-w-30">
                     
                         {variant === 'idle' && (
                             <motion.p 
@@ -38,7 +38,7 @@ export default function DynamicIsland({ children, studentName }: { children: Rea
                                 animate={{ opacity: 1, filter: "blur(0)"}}
                                 exit={{ opacity: 0, filter: "blur(12px)" }}
                                 transition={{ duration: 0.3 }}
-                                className="flex flex-col gap-2 w-72 p-2 cursor-default"
+                                className="flex flex-col gap-2 w-72 p-3 cursor-default"
                             >
                                 {children}
                             </motion.div>
