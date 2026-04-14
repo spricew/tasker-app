@@ -44,12 +44,12 @@ export default async function Student() {
                     <span className="self-end font-medium tracking-tight first-letter:capitalize text-nowrap">{dateString}</span>
 
                     <DynamicIsland studentName={loggedInUserName}>
-                        <TertiaryButton
+                        {/* <TertiaryButton
                             text="Editar perfil"
                             Icon={<Pencil className="size-[1em] stroke-2" />}
                             iconPosition="left"
                             theme="secondary"
-                        />
+                        /> */}
                         <LogoutButton />
                     </DynamicIsland>
                 </div>
