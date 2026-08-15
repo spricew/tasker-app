@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function Footer() {
+export function Footer() {
     return (
         <footer id="contacto"
         className="mx-auto mt-30 md:mt-40 px-10 pb-12 pt-20 bg-surface-container-high">
