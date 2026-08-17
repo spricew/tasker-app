@@ -5,15 +5,15 @@ export function Hero() {
     return (
         <header className="relative">
             <div className="relative flex flex-col items-center justify-center h-screen pb-20 text-center bg-surface-container-low">
-                <h1 className={`${family.className} mx-auto max-w-4xl leading-[1.09] tracking-tight text-charcoal-primary
-                text-5xl  md:text-6xl lg:text-7xl`}>
+                <h1 className={`${family.className} mx-auto max-w-4xl leading-[1.09] tracking-tight text-ref-palette-secondary-60
+                text-5xl md:text-6xl lg:text-7xl`}>
 
                     Organiza tu día
                     <br className="hidden md:block" /> como una{" "}
                     <span className="text-primary-container">aventura</span>
                 </h1>
 
-                <p className="mx-auto mt-8 max-w-120 text-base leading-[1.47] text-graphite md:text-[17px]">
+                <p className="mx-auto mt-8 max-w-120 text-base leading-[1.47] text-graphite md:text-base">
                     Tasker es la lista de tareas que se siente como un juego. Crea,
                     completa y celebra. Hecha para estudiantes, sin curva de
                     aprendizaje.
