@@ -94,6 +94,12 @@
     --color-ref-palette-neutral-98: #F9F9F9;
     --color-ref-palette-neutral-99: #FCFCFC;
     --color-ref-palette-neutral-100: #FFFFFF;
+
+    /* Shadows */
+  --shadow-card-inset: color(display-p3 0.94902 0.941176 0.929412) 0px 0px 0px 1px inset;
+  --shadow-nav-line: rgba(0, 0, 0, 0.04) 0px 0px 0px 1px;
+  --shadow-phone: rgba(0, 0, 0, 0.15) 0px 0px 24px 0px;
+  --shadow-elevated: 0px 5px 4px rgba(0, 0, 0, 0.01), 0px 15px 15px rgba(0, 0, 0, 0.01), 0px 30px 30px rgba(0, 0, 0, 0.04);
 }
 
 
