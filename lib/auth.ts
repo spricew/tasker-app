@@ -4,41 +4,45 @@ import { cookies } from 'next/headers';
 
 const JWT_SECRET = process.env.JWT_SECRET as string;
 
-export async function requireAdmin() {
-    try {
-        const cookieStore = await cookies();
-        const token = cookieStore.get('tasker_token')?.value;
-
-        if (!token) {
-            return NextResponse.json({ error: 'No autorizado, por favor inicia sesión.' }, { status: 401 });
-        }
-
-        const desencriptado = jwt.verify(token, JWT_SECRET) as { id: string, rol: string };
-
-        if (desencriptado.rol !== 'ADMIN') {
-            return NextResponse.json({ error: 'Acceso denegado. Se requieren permisos de Administrador.' }, { status: 403 }); // 403 = Prohibido
-        }
-
-        // Devolvemos 'null' para indicar que no hay ningún error y puede pasar.
-        return null;
-
-    } catch (error) {
-        // Si el token expiró o fue manipulado
-        return NextResponse.json({ error: 'Sesión inválida o expirada' }, { status: 401 });
-    }
+export interface SessionUser {
+    id: string;
+    rol: 'ADMIN' | 'USER';
+    nombre: string;
 }
 
-export async function getUserFromToken() {
-    const cookieStore = await cookies();
-    const token = cookieStore.get('tasker_token')?.value;
-
+// Verifica la FIRMA del token y devuelve el payload. Nunca confiar en el
+// payload sin verificar. Devuelve null si no hay token o la firma es inválida.
+export function verifyToken(token: string | undefined | null): SessionUser | null {
     if (!token) return null;
 
     try {
-        // Asegúrate de usar "nombre" o "name" según lo que hayas definido al firmar el token
-        const decoded = jwt.verify(token, JWT_SECRET) as { id: string, nombre: string }; 
-        return decoded; 
-    } catch (error) {
+        return jwt.verify(token, JWT_SECRET) as SessionUser;
+    } catch {
+        // Token expirado, manipulado o firma inválida
         return null;
     }
+}
+
+export async function getSessionUser() {
+    const cookieStore = await cookies();
+    return verifyToken(cookieStore.get('tasker_token')?.value);
+}
+
+export async function requireAdmin() {
+    const user = await getSessionUser();
+
+    if (!user) {
+        return NextResponse.json({ error: 'No autorizado, por favor inicia sesión.' }, { status: 401 });
+    }
+
+    if (user.rol !== 'ADMIN') {
+        return NextResponse.json({ error: 'Acceso denegado. Se requieren permisos de Administrador.' }, { status: 403 });
+    }
+
+    // Devolvemos 'null' para indicar que no hay ningún error y puede pasar.
+    return null;
+}
+
+export async function getUserFromToken() {
+    return getSessionUser();
 }

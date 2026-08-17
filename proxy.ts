@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import { verifyToken } from '@/lib/auth';
 
 export function proxy(request: NextRequest) {
     const token = request.cookies.get('tasker_token')?.value;
@@ -7,30 +8,21 @@ export function proxy(request: NextRequest) {
 
     const isAuthRoute = pathname === '/login' || pathname === '/register';
 
-    if (!token && !isAuthRoute) {
+    // Verificación optimista: la FIRMA del token se valida aquí,
+    // pero la autorización real se hace también en cada página/ruta API.
+    const decoded = verifyToken(token);
+
+    if (!decoded && !isAuthRoute) {
         return NextResponse.redirect(new URL('/login', request.url));
     }
 
-    if (token) {
-        try {
-            const payloadBase64 = token.split('.')[1];
-            const decodedJson = atob(payloadBase64); // atob convierte Base64 a texto
-            const usuario = JSON.parse(decodedJson); // Lo convertimos a objeto de JavaScript
+    if (decoded && pathname.startsWith('/admin') && decoded.rol !== 'ADMIN') {
+        return NextResponse.redirect(new URL('/student', request.url));
+    }
 
-            if (pathname.startsWith('/admin') && usuario.rol !== 'ADMIN') {
-                return NextResponse.redirect(new URL('/student', request.url));
-            }
-
-            // if (isAuthRoute) {
-            //     const redirectUrl = usuario.rol === 'ADMIN' ? '/admin' : '/student';
-            //     return NextResponse.redirect(new URL(redirectUrl, request.url));
-            // }
-
-        } catch (error) {
-            const response = NextResponse.redirect(new URL('/login', request.url));
-            response.cookies.delete('tasker_token');
-            return response;
-        }
+    if (decoded && isAuthRoute) {
+        const redirectUrl = decoded.rol === 'ADMIN' ? '/admin' : '/student';
+        return NextResponse.redirect(new URL(redirectUrl, request.url));
     }
 
     return NextResponse.next();

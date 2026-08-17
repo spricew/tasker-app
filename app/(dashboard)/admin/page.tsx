@@ -1,8 +1,16 @@
 import Image from "next/image";
+import { redirect } from "next/navigation";
 import UsersTable from "@/components/layout/UsersTable";
 import CreateUserModal from "@/components/layout/CreateUserButton";
+import { getSessionUser } from "@/lib/auth";
 
-export default function Admin() {
+export default async function Admin() {
+    const user = await getSessionUser();
+
+    if (!user || user.rol !== 'ADMIN') {
+        redirect('/student');
+    }
+
     return (
         <div className="flex flex-col flex-1 gap-y-8 px-18 py-12">
             <header className="flex justify-between items-center">
