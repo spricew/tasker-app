@@ -83,7 +83,7 @@ export default function EditUserButton({ id, currentName, currentEmail, currentR
     return (
         <>
             <div onClick={() => setShowModal(true)} className="cursor-pointer">
-                <TertiaryButton Icon={<Pencil strokeWidth={2.6} className="size-6" />} theme="secondary" />
+                <TertiaryButton Icon={<Pencil strokeWidth={2.6} className="size-6" />} theme="secondary" extraclass="text-brand-yellow" />
             </div>
 
             {showModal && (
