@@ -34,17 +34,17 @@ export default function Home() {
           {FEATURES.map((feature) => (
             <div
               key={feature.title}
-              className="rounded-3xl bg-white p-8 shadow-card-inset transition-shadow duration-200 hover:shadow-elevated"
+              className="rounded-3xl bg-white p-8 shadow-elevated"
             >
               <span
-                className={`flex h-10 w-10 items-center justify-center rounded-[40px] text-white ${feature.badge}`}
+                className={`flex h-10 w-10 items-center justify-center rounded-full text-white ${feature.badge}`}
               >
                 <feature.icon size={20} strokeWidth={2.25} />
               </span>
-              <h3 className="mt-6 text-[19px] font-semibold leading-[1.38] tracking-[-0.25px] text-charcoal-primary">
+              <h3 className="mt-4 text-lg font-semibold leading-[1.38] tracking-tight">
                 {feature.title}
               </h3>
-              <p className="mt-3 text-[15px] leading-[1.47] tracking-[-0.2px] text-graphite">
+              <p className="mt-3 text-base leading-[1.47]">
                 {feature.body}
               </p>
             </div>
@@ -65,17 +65,17 @@ export default function Home() {
           {STEPS.map((step) => (
             <div
               key={step.number}
-              className="rounded-xl bg-parchment-card p-8"
+              className="rounded-3xl bg-surface-container-lowest p-8 shadow-elevated"
             >
               <span
-                className={`flex h-10 w-10 items-center justify-center rounded-[40px] text-sm font-semibold text-white ${step.badge}`}
+                className={`flex h-10 w-10 items-center justify-center rounded-full text-sm font-semibold text-white ${step.badge}`}
               >
                 {step.number}
               </span>
-              <h3 className="mt-6 text-[19px] font-semibold leading-[1.38] tracking-[-0.25px]">
+              <h3 className="mt-4 text-lg font-semibold leading-[1.38] tracking-tight">
                 {step.title}
               </h3>
-              <p className="mt-3 text-[15px] leading-[1.47]">
+              <p className="mt-3 text-base leading-[1.47]">
                 {step.body}
               </p>
             </div>
