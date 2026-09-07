@@ -1,238 +1,237 @@
 # Tasker
 
-Aplicación web de gestión de tareas construida con **Next.js**, **Prisma** y **PostgreSQL**. Permite a estudiantes organizar sus tareas diarias y a administradores gestionar los perfiles de los usuarios, con autenticación basada en JWT y control de acceso por roles.
+Task management web application built with **Next.js**, **Prisma**, and **PostgreSQL**. It lets students organize their daily tasks and allows administrators to manage user profiles, with JWT-based authentication and role-based access control.
 
-## Tabla de contenidos
+## Table of contents
 
-- [Características](#características)
-- [Stack tecnológico](#stack-tecnológico)
-- [Estructura del proyecto](#estructura-del-proyecto)
-- [Requisitos previos](#requisitos-previos)
-- [Puesta en marcha](#puesta-en-marcha)
-- [Variables de entorno](#variables-de-entorno)
-- [Base de datos](#base-de-datos)
-- [Scripts disponibles](#scripts-disponibles)
-- [Rutas de la aplicación](#rutas-de-la-aplicación)
+- [Features](#features)
+- [Tech stack](#tech-stack)
+- [Project structure](#project-structure)
+- [Prerequisites](#prerequisites)
+- [Getting started](#getting-started)
+- [Environment variables](#environment-variables)
+- [Database](#database)
+- [Available scripts](#available-scripts)
+- [Application routes](#application-routes)
 - [API](#api)
-- [Autenticación y seguridad](#autenticación-y-seguridad)
-- [Despliegue](#despliegue)
+- [Authentication & security](#authentication--security)
+- [Deployment](#deployment)
 
-## Características
+## Features
 
-- **Página de aterrizaje** con secciones de características, pasos de uso y llamada a la acción.
-- **Autenticación completa**:
-  - Registro de usuarios.
-  - Inicio de sesión con sesión basada en cookies `httpOnly`.
-  - Recuperación de contraseña mediante enlace temporal enviado por correo (Resend).
-  - Restablecimiento de contraseña con token de un solo propósito (15 min de vigencia).
-- **Panel de estudiante**:
-  - Listado de tareas propias.
-  - Creación, completado y eliminación de tareas.
-  - Cierre de sesión.
-- **Panel de administración**:
-  - Listado de todos los usuarios.
-  - Creación, edición y eliminación de perfiles.
-  - Asignación de roles (`ADMIN` / `USER`).
-- **Control de acceso por roles** con protección de rutas y endpoints.
-- **Diseño** con Tailwind CSS v4, tipografía personalizada y animaciones con Framer Motion.
+- **Landing page** with feature sections, usage steps, and a call to action.
+- **Full authentication**:
+  - User registration.
+  - Login with `httpOnly` cookie-based sessions.
+  - Password recovery via a temporary link sent by email (Resend).
+  - Password reset with a single-purpose token (15 min validity).
+- **Student dashboard**:
+  - List of own tasks.
+  - Create, complete, and delete tasks.
+  - Log out.
+- **Admin dashboard**:
+  - List of all users.
+  - Create, edit, and delete profiles.
+  - Role assignment (`ADMIN` / `USER`).
+- **Role-based access control** with protected routes and endpoints.
+- **Design** built with Tailwind CSS v4, custom typography, and Framer Motion animations.
 
-## Stack tecnológico
+## Tech stack
 
-| Capa       | Tecnología                                    |
-|------------|-----------------------------------------------|
-| Framework  | Next.js 16 (App Router), React 19             |
-| Lenguaje   | TypeScript                                    |
-| Estilos    | Tailwind CSS v4                               |
-| ORM        | Prisma 6                                      |
-| Base datos | PostgreSQL (Neon)                             |
-| Auth       | JWT (`jsonwebtoken`) + cookies                |
-| Passwords  | `bcryptjs`                                    |
-| Correo     | Resend                                        |
-| Animación  | Framer Motion, `lucide-react`                 |
-| Notificaciones | `sileo`                                   |
+| Layer        | Technology                                     |
+|--------------|------------------------------------------------|
+| Framework    | Next.js 16 (App Router), React 19              |
+| Language     | TypeScript                                     |
+| Styling      | Tailwind CSS v4                                |
+| ORM          | Prisma 6                                       |
+| Database     | PostgreSQL (Neon)                              |
+| Auth         | JWT (`jsonwebtoken`) + cookies                 |
+| Passwords    | `bcryptjs`                                     |
+| Email        | Resend                                         |
+| Animation    | Framer Motion, `lucide-react`                  |
+| Notifications | `sileo`                                       |
 
-## Estructura del proyecto
+## Project structure
 
 ```
 .
 ├── app/
-│   ├── (auth)/               # Páginas de autenticación (login, register, recover, reset)
+│   ├── (auth)/               # Auth pages (login, register, recover, reset)
 │   ├── (dashboard)/
-│   │   ├── admin/            # Panel de administración
-│   │   └── student/          # Panel de estudiante
+│   │   ├── admin/            # Admin dashboard
+│   │   └── student/          # Student dashboard
 │   ├── api/
-│   │   ├── auth/             # Endpoints de autenticación
-│   │   ├── tasks/            # Endpoints de tareas
-│   │   └── users/            # Endpoints de usuarios
+│   │   ├── auth/             # Authentication endpoints
+│   │   ├── tasks/            # Task endpoints
+│   │   └── users/            # User endpoints
 │   ├── actions/              # Server Actions (logout)
-│   ├── layout.tsx            # Layout raíz
+│   ├── layout.tsx            # Root layout
 │   └── page.tsx              # Landing page
 ├── components/
-│   ├── layout/               # Navbar, Footer, Hero, tablas, formularios
-│   └── ui/                   # Componentes reutilizables (botones, inputs, modales)
+│   ├── layout/               # Navbar, Footer, Hero, tables, forms
+│   └── ui/                   # Reusable components (buttons, inputs, modals)
 ├── lib/
-│   ├── api/                  # Clientes de consumo de la API
-│   ├── data/                 # Acceso a datos (Prisma)
-│   ├── auth.ts               # Middleware de autorización (JWT)
-│   ├── db.ts                 # Cliente singleton de Prisma
-│   └── landing.ts            # Datos de la landing page
+│   ├── api/                  # API client modules
+│   ├── data/                 # Data access layer (Prisma)
+│   ├── auth.ts               # Authorization middleware (JWT)
+│   ├── db.ts                 # Prisma client singleton
+│   └── landing.ts            # Landing page data
 ├── prisma/
-│   ├── migrations/           # Migraciones de base de datos
-│   ├── schema.prisma         # Esquema de datos
-│   └── seed.ts               # Seed del usuario administrador
-├── proxy.ts                  # Middleware de protección de rutas
+│   ├── migrations/           # Database migrations
+│   ├── schema.prisma         # Data schema
+│   └── seed.ts               # Admin user seed
+├── proxy.ts                  # Route protection middleware
 ├── next.config.ts
 └── package.json
 ```
 
-## Requisitos previos
+## Prerequisites
 
-- Node.js 20 o superior.
-- npm (incluido con Node.js).
-- Una instancia de PostgreSQL (local o en la nube, p. ej. Neon).
-- Una cuenta de Resend con una API Key para el envío de correos de recuperación.
+- Node.js 20 or higher.
+- npm (bundled with Node.js).
+- A PostgreSQL instance (local or cloud-hosted, e.g. Neon).
+- A Resend account with an API key for sending recovery emails.
 
-## Puesta en marcha
+## Getting started
 
-1. Instala las dependencias:
+1. Install dependencies:
 
    ```bash
    npm install
    ```
 
-   El paso `postinstall` ejecuta automáticamente `prisma generate`.
+   The `postinstall` step automatically runs `prisma generate`.
 
-2. Crea el archivo `.env` en la raíz del proyecto y define las variables indicadas en [Variables de entorno](#variables-de-entorno).
+2. Create a `.env` file at the project root and define the variables listed in [Environment variables](#environment-variables).
 
-3. Sincroniza la base de datos con el esquema:
+3. Sync the database with the schema:
 
    ```bash
    npx prisma migrate dev
    ```
 
-4. Siembra el usuario administrador inicial:
+4. Seed the initial administrator user:
 
    ```bash
    npm run seed
    ```
 
-   > Requiere `ADMIN_EMAIL` y `ADMIN_PASSWORD` definidos en `.env`.
+   > Requires `ADMIN_EMAIL` and `ADMIN_PASSWORD` to be defined in `.env`.
 
-5. Inicia el servidor de desarrollo:
+5. Start the development server:
 
    ```bash
    npm run dev
    ```
 
-6. Abre [http://localhost:3000](http://localhost:3000).
+6. Open [http://localhost:3000](http://localhost:3000).
 
-## Variables de entorno
+## Environment variables
 
-| Variable                  | Descripción                                                              | Ejemplo |
-|---------------------------|--------------------------------------------------------------------------|---------|
-| `DATABASE_URL`            | Cadena de conexión a PostgreSQL (pooler).                                | `postgresql://...` |
-| `DIRECT_URL`              | Conexión directa a PostgreSQL (para migraciones).                        | `postgresql://...` |
-| `JWT_SECRET`              | Secreto para firmar y verificar tokens JWT.                              | `tu-secreto-seguro` |
-| `RESEND_API_KEY`          | API Key de Resend para el envío de correos.                              | `re_...` |
-| `NEXT_PUBLIC_APP_URL`     | URL pública de la aplicación (usada en el enlace de restablecimiento).   | `http://localhost:3000` |
-| `ADMIN_EMAIL`             | Correo del administrador inicial (seed).                                 | `admin@example.com` |
-| `ADMIN_PASSWORD`          | Contraseña del administrador inicial (seed).                             | `clave-segura` |
+| Variable                | Description                                                          | Example                  |
+|-------------------------|----------------------------------------------------------------------|--------------------------|
+| `DATABASE_URL`          | PostgreSQL connection string (pooler).                               | `postgresql://...`       |
+| `DIRECT_URL`            | Direct PostgreSQL connection (used for migrations).                  | `postgresql://...`       |
+| `JWT_SECRET`            | Secret used to sign and verify JWT tokens.                           | `your-secure-secret`     |
+| `RESEND_API_KEY`        | Resend API key for sending emails.                                   | `re_...`                 |
+| `NEXT_PUBLIC_APP_URL`   | Public URL of the app (used in reset links).                         | `http://localhost:3000`  |
+| `ADMIN_EMAIL`           | Email of the initial administrator (seed).                           | `admin@example.com`      |
+| `ADMIN_PASSWORD`        | Password of the initial administrator (seed).                        | `secure-password`        |
 
+## Database
 
-## Base de datos
+### Data model (`prisma/schema.prisma`)
 
-### Modelo de datos (`prisma/schema.prisma`)
+- **User**: `id` (UUID), `nombre`, `email` (unique), `password` (hash), `rol` (`ADMIN` | `USER`), timestamps.
+- **Task**: `id` (CUID), `title`, `completed` (boolean), `userId` (FK → User), `createdAt`.
+  - The relationship cascades on delete: deleting a user deletes their tasks.
 
-- **User**: `id` (UUID), `nombre`, `email` (único), `password` (hash), `rol` (`ADMIN` | `USER`), timestamps.
-- **Task**: `id` (CUID), `title`, `completed` (booleano), `userId` (FK → User), `createdAt`.
-  - La relación elimina en cascada: al borrar un usuario se borran sus tareas.
+### Migrations
 
-### Migraciones
-
-Crea una nueva migración tras modificar el esquema:
+Create a new migration after modifying the schema:
 
 ```bash
-npx prisma migrate dev --name descripcion_del_cambio
+npx prisma migrate dev --name change_description
 ```
 
 ### Seed
 
-El seed crea un usuario administrador si no existe. Se ejecuta con:
+The seed creates an admin user if one does not exist. Run it with:
 
 ```bash
 npm run seed
 ```
 
-## Scripts disponibles
+## Available scripts
 
-| Comando           | Descripción                                        |
-|-------------------|----------------------------------------------------|
-| `npm run dev`     | Inicia el servidor de desarrollo.                  |
-| `npm run build`   | Compila la aplicación para producción.             |
-| `npm run start`   | Inicia el servidor de producción.                  |
-| `npm run lint`    | Ejecuta ESLint sobre el código.                    |
-| `npm run seed`    | Ejecuta el seed de la base de datos.               |
-| `npm run postinstall` | Genera el cliente de Prisma tras instalar.     |
+| Command               | Description                                        |
+|-----------------------|----------------------------------------------------|
+| `npm run dev`         | Starts the development server.                     |
+| `npm run build`       | Builds the app for production.                     |
+| `npm run start`       | Starts the production server.                      |
+| `npm run lint`        | Runs ESLint over the codebase.                     |
+| `npm run seed`        | Runs the database seed.                            |
+| `npm run postinstall` | Generates the Prisma client after installing deps. |
 
-## Rutas de la aplicación
+## Application routes
 
-| Ruta            | Acceso            | Descripción                                        |
-|-----------------|-------------------|----------------------------------------------------|
-| `/`             | Público           | Landing page.                                      |
-| `/login`        | Público           | Inicio de sesión.                                  |
-| `/register`     | Público           | Registro de cuenta.                                |
-| `/recover`      | Público           | Solicitud de recuperación de contraseña.           |
-| `/reset`        | Público           | Restablecimiento de contraseña (token en query).   |
-| `/student`      | Usuario autenticado | Panel del estudiante (tareas).                   |
-| `/admin`        | Solo `ADMIN`      | Panel de administración (gestión de usuarios).     |
+| Route      | Access               | Description                                        |
+|------------|----------------------|----------------------------------------------------|
+| `/`        | Public               | Landing page.                                      |
+| `/login`   | Public               | Login page.                                        |
+| `/register`| Public               | Account registration.                              |
+| `/recover` | Public               | Password recovery request.                         |
+| `/reset`   | Public               | Password reset (token in query string).            |
+| `/student` | Authenticated users  | Student dashboard (tasks).                         |
+| `/admin`   | `ADMIN` only         | Admin dashboard (user management).                 |
 
-La protección de rutas se implementa en `proxy.ts` mediante el middleware de Next.js: redirige a `/login` a los visitantes sin token y limita `/admin` a usuarios con rol `ADMIN`.
+Route protection is implemented in `proxy.ts` via Next.js middleware: visitors without a token are redirected to `/login`, and `/admin` is restricted to users with the `ADMIN` role.
 
 ## API
 
-### Autenticación
+### Authentication
 
-| Método | Ruta                | Descripción                                          |
-|--------|---------------------|------------------------------------------------------|
-| POST   | `/api/auth/register`| Registra un nuevo usuario (rol forzado a `USER`).    |
-| POST   | `/api/auth/login`   | Inicia sesión y establece la cookie `tasker_token`.  |
-| POST   | `/api/auth/recover` | Envía un correo con el enlace de restablecimiento.   |
-| POST   | `/api/auth/reset`   | Actualiza la contraseña usando el token de recuperación. |
+| Method | Route               | Description                                              |
+|--------|---------------------|----------------------------------------------------------|
+| POST   | `/api/auth/register`| Registers a new user (role forced to `USER`).            |
+| POST   | `/api/auth/login`   | Logs in and sets the `tasker_token` cookie.              |
+| POST   | `/api/auth/recover` | Sends an email with the reset link.                     |
+| POST   | `/api/auth/reset`   | Updates the password using a recovery token.             |
 
-### Usuarios (requiere rol `ADMIN`)
+### Users (requires `ADMIN` role)
 
-| Método  | Ruta            | Descripción                                  |
-|---------|-----------------|----------------------------------------------|
-| GET     | `/api/users`    | Lista todos los usuarios.                    |
-| POST    | `/api/users`    | Crea un usuario.                             |
-| PATCH   | `/api/users/:id`| Actualiza nombre, correo, rol y/o contraseña.|
-| DELETE  | `/api/users/:id`| Elimina un usuario (y sus tareas).           |
+| Method | Route            | Description                                        |
+|--------|------------------|----------------------------------------------------|
+| GET    | `/api/users`     | Lists all users.                                   |
+| POST   | `/api/users`     | Creates a user.                                    |
+| PATCH  | `/api/users/:id` | Updates name, email, role, and/or password.        |
+| DELETE | `/api/users/:id` | Deletes a user (and their tasks).                  |
 
-### Tareas (requiere sesión)
+### Tasks (requires session)
 
-| Método  | Ruta            | Descripción                                      |
-|---------|-----------------|--------------------------------------------------|
-| GET     | `/api/tasks`    | Lista las tareas del usuario autenticado.        |
-| POST    | `/api/tasks`    | Crea una tarea (`title` obligatorio).            |
-| PATCH   | `/api/tasks/:id`| Marca una tarea como completada (`completed`).   |
-| DELETE  | `/api/tasks/:id`| Elimina una tarea del usuario autenticado.       |
+| Method | Route            | Description                                        |
+|--------|------------------|----------------------------------------------------|
+| GET    | `/api/tasks`     | Lists the authenticated user's tasks.              |
+| POST   | `/api/tasks`     | Creates a task (`title` required).                 |
+| PATCH  | `/api/tasks/:id` | Marks a task as completed (`completed`).           |
+| DELETE | `/api/tasks/:id` | Deletes a task owned by the authenticated user.    |
 
-> Los endpoints de tareas validan que el recurso pertenezca al usuario autenticado (`403` en caso contrario).
+> Task endpoints verify that the resource belongs to the authenticated user (`403` otherwise).
 
-## Autenticación y seguridad
+## Authentication & security
 
-- Las contraseñas se almacenan como hash de `bcryptjs` (nunca en texto plano).
-- La sesión se mantiene con un JWT firmado con `JWT_SECRET` y guardado en una cookie `httpOnly`, `sameSite: strict`, con vencimiento de 8 horas.
-- `requireAdmin()` (`lib/auth.ts`) protege los endpoints de usuarios y devuelve `401`/`403` según el estado de la sesión y el rol.
-- El token de recuperación de contraseña es de un solo propósito (`proposito: 'recuperacion'`) y expira a los 15 minutos.
+- Passwords are stored as `bcryptjs` hashes (never in plain text).
+- Sessions are maintained with a JWT signed using `JWT_SECRET` and stored in an `httpOnly`, `sameSite: strict` cookie that expires after 8 hours.
+- `requireAdmin()` (`lib/auth.ts`) protects the user endpoints and returns `401`/`403` depending on session state and role.
+- The password recovery token is single-purpose (`proposito: 'recuperacion'`) and expires after 15 minutes.
 
-## Despliegue
+## Deployment
 
-La aplicación puede desplegarse en plataformas compatibles con Next.js, como **Vercel**:
+The application can be deployed on platforms that support Next.js, such as **Vercel**:
 
-1. Conecta el repositorio al proyecto en Vercel.
-2. Configura las variables de entorno indicadas en [Variables de entorno](#variables-de-entorno).
-3. Define `NEXT_PUBLIC_APP_URL` con la URL de producción para que los enlaces de recuperación funcionen correctamente.
-4. Ejecuta las migraciones (`npx prisma migrate deploy`) y el seed contra la base de datos de producción.
+1. Connect the repository to your Vercel project.
+2. Configure the environment variables listed in [Environment variables](#environment-variables).
+3. Set `NEXT_PUBLIC_APP_URL` to the production URL so recovery links work correctly.
+4. Run migrations (`npx prisma migrate deploy`) and the seed against the production database.
 
-Consulta la [documentación de despliegue de Next.js](https://nextjs.org/docs/app/building-your-application/deploying) para más detalles.
+See the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
