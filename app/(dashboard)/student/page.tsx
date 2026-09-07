@@ -2,11 +2,15 @@ import { getUserFromToken } from "@/lib/auth";
 import { getTasksByUserId } from "@/lib/data/tasks";
 
 import CreateTaskButton from "@/components/ui/Buttons/CreateTaskbutton";
-import TertiaryButton from "@/components/ui/Buttons/TertiaryButton";
 import DynamicIsland from "@/components/ui/DynamicIsland";
 import LogoutButton from "@/components/ui/Buttons/LogoutButton";
-import AnimatedTaskList from "@/components/layout/AnimatedTasklist";
-import { Pencil } from "lucide-react";
+import TaskSection from "@/components/layout/TaskSection";
+
+interface StudentTask {
+    id: string;
+    title: string;
+    completed: boolean;
+}
 
 export default async function Student() {
     const user = await getUserFromToken();
@@ -14,7 +18,7 @@ export default async function Student() {
     const loggedInUserName = user?.nombre as string;
     const userId = user?.id;
 
-    let tasks: any[] = [];
+    let tasks: StudentTask[] = [];
 
     try {
         if (userId) {
@@ -55,7 +59,7 @@ export default async function Student() {
                 </div>
             </header>
 
-            <AnimatedTaskList tasks={tasks} />
+            <TaskSection tasks={tasks} />
 
             <CreateTaskButton />
         </div>
