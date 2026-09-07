@@ -48,7 +48,7 @@ export default function Register() {
 
     return (
         <div className="relative flex flex-1 items-center px-50 z-1">
-            <Image src='/images/background-auth.jpg' alt="tasker background" width={1200} height={1200}
+            <Image src='/images/background-auth.jpg' alt="" priority width={1200} height={1200}
                 className="absolute inset-0 w-full h-full object-cover z-[-1]" />
 
             <main className="squircle flex flex-col justify-center items-center gap-2 w-120 h-140 p-10 rounded-3xl">
