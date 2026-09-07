@@ -1,13 +1,10 @@
-
-
-
 export function MeshBackground() {
     return (
         <div className="absolute inset-0 overflow-hidden min-h-screen bg-surface-container-low -z-10">
             <div
                 className="absolute inset-0 pointer-events-none opacity-80"
                 style={{
-                    background: "linear-gradient(rgba(15, 93, 219, 0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(20,184,166,0.08) 1px, transparent 1px)",
+                    background: "linear-gradient(rgba(15, 93, 219, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(20,184,166,0.08) 1px, transparent 1px)",
                     backgroundSize: "48px 48px",
                     mixBlendMode: "normal",
                 }}
