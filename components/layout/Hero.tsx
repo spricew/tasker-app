@@ -31,7 +31,7 @@ export function Hero() {
                         }}
                         aria-hidden="true"
                     ></div>
-                    <div className="relative z-[1]">
+                    <div className="relative z-1">
                     </div>
                 </div>
 
