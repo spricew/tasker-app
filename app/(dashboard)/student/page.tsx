@@ -4,7 +4,7 @@ import { getTasksByUserId } from "@/lib/data/tasks";
 import CreateTaskButton from "@/components/ui/Buttons/CreateTaskbutton";
 import DynamicIsland from "@/components/ui/DynamicIsland";
 import LogoutButton from "@/components/ui/Buttons/LogoutButton";
-import TaskSection from "@/components/layout/TaskSection";
+import StudentHeader from "@/components/layout/StudentHeader";
 
 interface StudentTask {
     id: string;
@@ -28,8 +28,6 @@ export default async function Student() {
         console.error("Error obteniendo tareas");
     }
 
-    const pendingTasks = tasks?.filter(task => !task.completed).length || 0;
-
     const dateString = new Date().toLocaleDateString('es-MX', {
         weekday: 'long',
         month: 'long',
@@ -41,7 +39,7 @@ export default async function Student() {
             <header className="flex justify-between">
                 <div className="flex flex-col gap-y-2">
                     <h1 className="text-6xl font-bold tracking-tighter">Today</h1>
-                    <p>Tienes {pendingTasks} tareas pendientes hoy.</p>
+                    <StudentHeader tasks={tasks} />
                 </div>
 
                 <div className="relative flex flex-col gap-y-2">
@@ -58,8 +56,6 @@ export default async function Student() {
                     </DynamicIsland>
                 </div>
             </header>
-
-            <TaskSection tasks={tasks} />
 
             <CreateTaskButton />
         </div>
