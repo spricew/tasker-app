@@ -155,6 +155,7 @@ body {
     font-family: "DM Sans", system-ui, Arial, Helvetica, sans-serif;
     background-color: var(--color-background);
     color: var(--color-on-surface);
+    scroll-padding-top: 8.5rem;
 }
 
 @supports (corner-shape: squircle) {
