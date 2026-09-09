@@ -5,7 +5,7 @@ import { MeshBackground } from "@/components/layout/MeshBackground";
 export function Hero() {
     return (
         <header className="relative">
-            <div className="relative flex flex-col items-center justify-center h-screen pb-20 text-center bg-surface-container-low z-0">
+            <div className="relative flex flex-col items-center justify-center h-screen text-center bg-surface-container-low z-0">
 
                 <MeshBackground />
 
