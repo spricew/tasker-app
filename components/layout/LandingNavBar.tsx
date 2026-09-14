@@ -2,7 +2,7 @@ import { NAV_LINKS } from "@/lib/landing";
 
 export function LandingNavBar() {
     return (
-        <div className="fixed top-0 z-50 flex justify-center w-full h-24 py-4">
+        <div className="fixed top-0 z-50 flex justify-center w-full h-28 py-6">
             <nav className="flex justify-between px-4 items-center h-full w-160 rounded-full border border-outline-variant/20 shadow-2xl shadow-black/10 bg-white/40 backdrop-blur-lg backdrop-brightness-115">
 
                 <a href="#top" className="flex items-center pl-2">

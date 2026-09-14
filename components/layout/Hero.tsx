@@ -4,10 +4,11 @@ import { MeshBackground } from "@/components/layout/MeshBackground";
 
 export function Hero() {
     return (
-        <header className="relative">
-            <div className="relative flex flex-col items-center justify-center h-screen text-center bg-surface-container-low z-0">
+        <header className="relative flex flex-col items-center justify-center h-screen text-center bg-surface-container-low z-0">
 
-                <MeshBackground />
+            <MeshBackground />
+
+            <div className="mt-4">
 
                 <h1 className={`${family.className} mx-auto max-w-4xl leading-[1.09] tracking-tight text-ref-palette-secondary-60
                 text-5xl md:text-6xl lg:text-7xl`}>
