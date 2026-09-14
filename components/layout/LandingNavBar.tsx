@@ -24,7 +24,7 @@ export function LandingNavBar() {
                 </div>
 
                 <a
-                    href="https://github.com"
+                    href="https://github.com/spricew/tasker-app"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-center rounded-full text-charcoal-primary transition-colors duration-200 hover:bg-surface-container-high hover:text-midnight"
