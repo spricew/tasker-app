@@ -144,10 +144,6 @@
     font-display: swap;
 }
 
-* {
-    box-sizing: border-box;
-}
-
 html,
 body {
     height: 100%;
@@ -155,7 +151,7 @@ body {
     font-family: "DM Sans", system-ui, Arial, Helvetica, sans-serif;
     background-color: var(--color-background);
     color: var(--color-on-surface);
-    scroll-padding-top: 8.5rem;
+    scroll-padding-top: 9.5rem;
 }
 
 @supports (corner-shape: squircle) {
