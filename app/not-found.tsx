@@ -1,7 +1,6 @@
 import { HomeIcon } from 'lucide-react'
 import Navbar from '@/components/layout/Navbar'
 import { MeshBackground } from '@/components/layout/MeshBackground'
-import { family } from '@/lib/landing'
 import PrimaryButton from '@/components/ui/Buttons/PrimaryButton'
 
 export default function NotFound() {
