@@ -1,16 +1,15 @@
 export default function Navbar() {
     return (
-        <header className="flex justify-between items-center min-h-21 w-full px-18 bg-surface-container-lowest">
-
-            <a href="/" className="flex items-center gap-x-2 cursor-pointer">
+        <header className="flex justify-between items-center min-h-18 w-full px-18 ">
+            <a href="/" className="flex items-center gap-x-1.5 cursor-pointer">
                 <img
                     src="/logo.png"
                     width={800}
                     height={800}
                     alt="Logo"
-                    className="size-9 object-center object-cover" />
+                    className="size-6 object-center object-cover" />
 
-                <span className="text-3xl tracking-tighter font-semibold text-onSurface">Tasker</span>
+                <span className="text-2xl tracking-tighter font-semibold text-on-surface">Tasker</span>
             </a>
         </header>
     );
