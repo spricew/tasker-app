@@ -1,6 +1,6 @@
 export function MeshBackground() {
     return (
-        <div className="absolute inset-0 overflow-hidden min-h-screen bg-surface-container-low -z-10">
+        <div className="absolute inset-0 overflow-hidden h-full bg-surface-container-low -z-50">
             <div
                 className="absolute inset-0 pointer-events-none opacity-80"
                 style={{

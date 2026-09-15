@@ -1,6 +1,6 @@
-export default function Navbar() {
+export default function Navbar({ extraClass = "" }: { extraClass?: string }) {
     return (
-        <header className="flex justify-between items-center min-h-18 w-full px-18 ">
+        <header className={`flex justify-between items-center min-h-18 w-full px-18 z-100 ${extraClass}`} >
             <a href="/" className="flex items-center gap-x-1.5 cursor-pointer">
                 <img
                     src="/logo.png"
