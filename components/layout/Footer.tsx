@@ -2,9 +2,7 @@ import Link from "next/link";
 
 export function Footer() {
     return (
-        <footer id="contacto"
-        className="mx-auto mt-30 md:mt-40 px-10 md:px-14 pb-12 pt-20 bg-surface-container-high">
-
+        <footer className="mx-auto mt-30 md:mt-40 px-10 md:px-14 pb-12 pt-20 bg-surface-container-high">
             <div className="flex flex-col gap-12 md:flex-row md:justify-between">
                 <div className="max-w-xs">
                     <a href="#top" className="flex items-center">
@@ -39,6 +37,14 @@ export function Footer() {
                     </div>
                     <div>
                         <p className="text-sm font-medium tracking-tight text-charcoal-primary">
+                            Legal
+                        </p>
+                        <ul className="mt-4 space-y-3">
+                            <li><Link href="/politica-privacidad" className="text-sm tracking-tight text-ash transition-colors duration-200 hover:text-charcoal-primary">Política de Privacidad</Link></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p className="text-sm font-medium tracking-tight text-charcoal-primary">
                             Redes sociales
                         </p>
                         <ul className="mt-4 space-y-3">
@@ -48,7 +54,7 @@ export function Footer() {
                 </div>
             </div>
 
-            <p className="mt-12 text-xs leading-[1.58] tracking-tight text-outline-variant">
+            <p className="mt-12 text-xs tracking-tight text-outline">
                 © 2026 Tasker. Hecho con calidez.
             </p>
         </footer>
