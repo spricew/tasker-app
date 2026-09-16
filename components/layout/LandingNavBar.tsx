@@ -3,7 +3,9 @@ import { NAV_LINKS } from "@/lib/landing";
 export function LandingNavBar() {
     return (
         <div className="fixed top-0 z-50 flex justify-center w-full h-28 py-6">
-            <nav className="flex justify-between px-4 items-center h-full w-160 rounded-full border border-outline-variant/20 shadow-2xl shadow-black/10 bg-white/40 backdrop-blur-lg backdrop-brightness-115">
+            <nav className="flex justify-between px-4 items-center h-full w-160 rounded-full
+            bg-white/70 backdrop-blur-2xl backdrop-saturate-[4.8] shadow-[inset_0_0_0_1px_rgba(255,255,255,0.2),inset_0_1px_0_rgba(255,255,255,0.4),0_8px_32px_rgba(0,0,0,0.12)] 
+            ">
 
                 <a href="#top" className="flex items-center pl-2">
                     <span className="text-2xl tracking-tighter font-semibold text-charcoal-primary">
