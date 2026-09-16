@@ -16,7 +16,7 @@ export const family = Fraunces({
 export const NAV_LINKS = [
   { label: "Características", href: "#features" },
   { label: "Cómo funciona", href: "#como-funciona" },
-  { label: "Contacto", href: "#contacto" },
+  { label: "Contacto", href: "/contact" },
 ];
 
 export const FEATURES = [
