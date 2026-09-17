@@ -5,7 +5,8 @@ import { Send } from 'lucide-react'
 import { sileo } from 'sileo'
 import PrimaryInput from '@/components/ui/PrimaryInput'
 import PrimaryButton from '@/components/ui/Buttons/PrimaryButton'
-import { sendContactEmail } from '@/app/actions/contact'
+
+const FORMSUBMIT_EMAIL = 'heydercramvcreator@gmail.com'
 
 export default function ContactForm() {
     const [isLoading, setIsLoading] = useState(false)
@@ -15,13 +16,20 @@ export default function ContactForm() {
         setIsLoading(true)
 
         const formData = new FormData(e.currentTarget)
-        const name = formData.get('name') as string
-        const email = formData.get('email') as string
-        const subject = formData.get('subject') as string
-        const message = formData.get('message') as string
 
         try {
-            await sendContactEmail({ name, email, subject, message })
+            const res = await fetch(`https://formsubmit.co/${FORMSUBMIT_EMAIL}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    name: formData.get('name'),
+                    email: formData.get('email'),
+                    subject: formData.get('subject'),
+                    message: formData.get('message'),
+                }),
+            })
+
+            if (!res.ok) throw new Error('Error al enviar')
 
             sileo.success({
                 title: 'Mensaje enviado',
@@ -33,7 +41,7 @@ export default function ContactForm() {
             })
 
             e.currentTarget.reset()
-        } catch (error) {
+        } catch {
             sileo.error({
                 title: 'Error al enviar',
                 duration: 4500,
