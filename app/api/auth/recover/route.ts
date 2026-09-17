@@ -28,12 +28,11 @@ export async function POST(request: Request) {
       { expiresIn: '15m' }
     );
 
-    // reemplazar el url en .env cuando se despliegue
     const baseUrl = process.env.NEXT_PUBLIC_APP_URL;
     const resetLink = `${baseUrl}/reset?token=${resetToken}`;
 
     await resend.emails.send({
-      from: 'Tasker App <onboarding@resend.dev>',
+      from: 'Tasker App <onboarding@tasker.app>',
       to: email,
       subject: 'Recuperación de contraseña - Tasker',
       html: `

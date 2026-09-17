@@ -1,4 +1,5 @@
 'use server'
+import { Resend } from "resend"
 
 interface ContactFormData {
     name: string
@@ -19,16 +20,14 @@ export async function sendContactEmail(data: ContactFormData) {
         throw new Error('El correo electrónico no es válido')
     }
 
-    // TODO: Integrar con un servicio de correo (Resend, SendGrid, etc.)
-    // Ejemplo con Resend:
-    // const resend = new Resend(process.env.RESEND_API_KEY)
-    // await resend.emails.send({
-    //     from: 'Tasker <noreply@tasker.app>',
-    //     to: 'hola@tasker.app',
-    //     replyTo: email,
-    //     subject: `[Contacto] ${subject}`,
-    //     text: `Nombre: ${name}\nCorreo: ${email}\n\n${message}`,
-    // })
+    const resend = new Resend(process.env.RESEND_API_KEY)
+    await resend.emails.send({
+        from: 'Tasker <noreply@tasker.app>',
+        to: 'hola@tasker.app',
+        replyTo: email,
+        subject: `[Contacto] ${subject}`,
+        text: `Nombre: ${name}\nCorreo: ${email}\n\n${message}`,
+    })
 
     console.log('Contact form submission:', { name, email, subject, message })
 

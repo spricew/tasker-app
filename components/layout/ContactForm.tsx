@@ -48,7 +48,7 @@ export default function ContactForm() {
     }
 
     return (
-        <form className='flex flex-col gap-4 w-full max-w-sm' onSubmit={handleSubmit}>
+        <form className='flex flex-col gap-4 w-full px-8' onSubmit={handleSubmit}>
             <PrimaryInput
                 name='name'
                 label='Nombre'
@@ -73,14 +73,14 @@ export default function ContactForm() {
                 <textarea
                     name='message'
                     placeholder='Escribe tu mensaje aquí...'
-                    rows={4}
+                    rows={5}
                     required
-                    className='squircle py-2 px-4 rounded-xl ring ring-outline-variant bg-surface-container-lowest focus:outline-0 resize-none'
+                    className='py-2 px-4 rounded-2xl ring ring-outline-variant bg-surface-container-lowest focus:outline-0 resize-none'
                 />
             </div>
             <PrimaryButton
                 text={isLoading ? 'Enviando...' : 'Enviar mensaje'}
-                Icon={<Send strokeWidth={2.3} />}
+                Icon={<Send strokeWidth={2.25} size={17.5} />}
                 type='submit'
                 disabled={isLoading}
             />

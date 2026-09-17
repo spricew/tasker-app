@@ -1,4 +1,3 @@
-import { family } from '@/lib/landing'
 import { Mail, MessageSquare, ArrowLeft } from 'lucide-react'
 import PrimaryButton from '@/components/ui/Buttons/PrimaryButton'
 import ContactForm from '@/components/layout/ContactForm'
@@ -9,12 +8,12 @@ export default function Contact() {
         <div className='flex flex-col min-h-screen z-0'>
             <Navbar />
             <main className='relative flex flex-col items-center justify-center w-full flex-1 px-6 py-24'>
-                <div className='relative z-10 flex flex-col items-center gap-y-8 max-w-xl text-center'>
-                    <h1 className={`${family.className} text-5xl font-semibold tracking-tight md:text-6xl`}>
+                <div className='relative z-10 flex flex-col items-center gap-y-8 max-w-lg text-center   '>
+                    <h1 className="text-5xl font-semibold tracking-tighter md:text-6xl">
                         Contacto
                     </h1>
                     <p className='text-lg text-on-surface-variant leading-relaxed'>
-                        ¿Tienes preguntas, sugerencias o simplemente quieres charlar? 
+                        ¿Tienes preguntas, sugerencias o simplemente quieres charlar?
                         Nos encantaría escucharte.
                     </p>
 
@@ -22,29 +21,26 @@ export default function Contact() {
 
                     <div className='flex flex-col gap-3 w-full max-w-sm mt-4'>
                         <span className='text-sm text-on-surface-variant'>Otras formas de contacto</span>
-                        <div className='flex gap-3 justify-center'>
-                            <a
-                                href='mailto:hola@tasker.app'
-                                className='flex items-center gap-2 px-4 py-2 rounded-full bg-surface-container-lowest border border-outline-variant/20 text-sm font-medium text-on-surface transition-all duration-200 hover:bg-surface-container-low'
-                            >
-                                <Mail size={16} strokeWidth={2.25} />
-                                Email
-                            </a>
-                            <a
-                                href='https://github.com/spricew/tasker-app/issues'
-                                target='_blank'
-                                rel='noopener noreferrer'
-                                className='flex items-center gap-2 px-4 py-2 rounded-full bg-surface-container-lowest border border-outline-variant/20 text-sm font-medium text-on-surface transition-all duration-200 hover:bg-surface-container-low'
-                            >
-                                <MessageSquare size={16} strokeWidth={2.25} />
-                                GitHub
-                            </a>
+                        <div className='flex gap-x-2 justify-center'>
+                            <PrimaryButton
+                                text='Email'
+                                theme='tertiary'
+                                Icon={<Mail strokeWidth={2.25} size={16} />}
+                                extraclass='text-sm'
+                                href='mailto:heydercramvcreator@gmail.com'
+                            />
+                            <PrimaryButton
+                                text='Github'
+                                theme='tertiary'
+                                Icon={<MessageSquare strokeWidth={2.25} size={16} />}
+                                extraclass='text-sm rounded-full'
+                                href='mailto:heydercramvcreator@gmail.com'
+                            />
                         </div>
                     </div>
-
                     <PrimaryButton
                         text='Volver al inicio'
-                        Icon={<ArrowLeft strokeWidth={2.3} />}
+                        Icon={<ArrowLeft strokeWidth={2.2} size={22} />}
                         href='/'
                         theme='secondary'
                     />
