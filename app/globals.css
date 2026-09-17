@@ -9,8 +9,8 @@
     --color-on-secondary: #FFFFFF;
     --color-secondary-container: #1B1B1B;
     --color-on-secondary-container: #848484;
-    --color-tertiary: #790089;
-    --color-on-tertiary: #FFFFFF;
+    --color-tertiary: #FFFFFF;
+    --color-on-tertiary: #1B1B1B;
     --color-primary-background: color-mix(in oklch, var(--color-ref-palette-primary-50) 10%, transparent);
     --color-secondary-background: color-mix(in oklch, var(--color-ref-palette-secondary-80) 10%, transparent);
     --color-tertiary-background: color-mix(in oklch, var(--color-ref-palette-tertiary-40) 10%, transparent);
@@ -66,15 +66,15 @@
 
     /* tertiary */
     --color-ref-palette-tertiary-0: #000000;
-    --color-ref-palette-tertiary-10: #36003E;
-    --color-ref-palette-tertiary-20: #580064;
-    --color-ref-palette-tertiary-30: #7C008D;
-    --color-ref-palette-tertiary-40: #A208B7;
-    --color-ref-palette-tertiary-50: #BF36D2;
-    --color-ref-palette-tertiary-60: #DE55EF;
-    --color-ref-palette-tertiary-70: #F37CFF;
-    --color-ref-palette-tertiary-80: #FCAAFF;
-    --color-ref-palette-tertiary-90: #FFD6FC;
+    --color-ref-palette-tertiary-10: #1B1B1B;
+    --color-ref-palette-tertiary-20: #303030;
+    --color-ref-palette-tertiary-30: #474747;
+    --color-ref-palette-tertiary-40: #5E5E5E;
+    --color-ref-palette-tertiary-50: #777777;
+    --color-ref-palette-tertiary-60: #919191;
+    --color-ref-palette-tertiary-70: #ABABAB;
+    --color-ref-palette-tertiary-80: #C6C6C6;
+    --color-ref-palette-tertiary-90: #E2E2E2;
     --color-ref-palette-tertiary-100: #FFFFFF;
 
     /* Neutral & Neutral Variant */
