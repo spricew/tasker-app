@@ -14,7 +14,7 @@ export default function NotFound() {
                 <p className='text-lg font-medium text-on-surface-variant'>La página que buscas no existe o fue movida.</p>
                 <PrimaryButton
                     text='Regresar al inicio'
-                    Icon={<HomeIcon strokeWidth={2.3} />}
+                    Icon={<HomeIcon strokeWidth={2.3} size={20} />}
                     href='/'
                 />
             </main>
