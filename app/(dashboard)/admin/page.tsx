@@ -4,6 +4,14 @@ import UsersTable from "@/components/layout/UsersTable";
 import CreateUserModal from "@/components/layout/CreateUserButton";
 import { getSessionUser } from "@/lib/auth";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Panel de administración",
+    description:
+        "Gestión completa de estudiantes y administradores del sistema Tasker.",
+};
+
 export default async function Admin() {
     const user = await getSessionUser();
 

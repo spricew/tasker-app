@@ -4,7 +4,7 @@ import TertiaryButton from "@/components/ui/Buttons/TertiaryButton";
 import { ChevronLeft } from "lucide-react";
 
 export const metadata = {
-  title: "Política de Privacidad — Tasker",
+  title: "Política de Privacidad",
   description:
     "Conoce cómo Tasker recopila, utiliza y protege tu información personal.",
 };

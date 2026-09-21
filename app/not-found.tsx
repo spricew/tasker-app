@@ -3,6 +3,12 @@ import Navbar from '@/components/layout/Navbar'
 import { MeshBackground } from '@/components/layout/MeshBackground'
 import PrimaryButton from '@/components/ui/Buttons/PrimaryButton'
 
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+    title: 'Página no encontrada',
+}
+
 export default function NotFound() {
     return (
         <div className='flex flex-col h-screen z-0'>

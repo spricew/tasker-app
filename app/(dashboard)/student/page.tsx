@@ -6,6 +6,13 @@ import DynamicIsland from "@/components/ui/DynamicIsland";
 import LogoutButton from "@/components/ui/Buttons/LogoutButton";
 import StudentHeader from "@/components/layout/StudentHeader";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Mis tareas",
+    description: "Organiza, haz seguimiento y completa las tareas de tu día.",
+};
+
 interface StudentTask {
     id: string;
     title: string;

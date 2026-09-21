@@ -1,7 +1,13 @@
+import type { Metadata } from 'next'
 import { Mail, MessageSquare, ArrowLeft } from 'lucide-react'
 import PrimaryButton from '@/components/ui/Buttons/PrimaryButton'
 import ContactForm from '@/components/layout/ContactForm'
 import Navbar from '@/components/layout/Navbar'
+
+export const metadata: Metadata = {
+    title: 'Contacto',
+    description: '¿Tienes preguntas, sugerencias o simplemente quieres charlar? Nos encantaría escucharte.',
+}
 
 export default function Contact() {
     return (

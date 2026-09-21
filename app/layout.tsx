@@ -3,7 +3,10 @@ import "./globals.css";
 import { Toaster } from "sileo";
 
 export const metadata: Metadata = {
-  title: "Tasker — Tu día, una aventura",
+  title: {
+    default: "Tasker — Tu día, una aventura",
+    template: "%s | Tasker",
+  },
   description: "Organiza tus tareas con una elegancia y simplicidad inigualables.",
 };
 
