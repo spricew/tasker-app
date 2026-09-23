@@ -33,22 +33,32 @@ export default function DeleteUserButton({ userId }: { userId: string }) {
     const handleDelete = async (id:string) => {
 
         setIsDeleting(true);
+        sileo.dismiss(id);
+
         try {
-            await deleteUserById(userId);
+            await sileo.promise(
+                () => deleteUserById(userId),
+                {
+                    loading: {
+                        title: "Eliminando usuario...",
+                    },
+                    success: {
+                        title: "Usuario eliminado",
+                        duration: 3000,
+                        autopilot: { expand: 0, collapse: 2000 },
+                    },
+                    error: (err) => ({
+                        title: "Error al eliminar usuario",
+                        position: "top-center",
+                        duration: 4500,
+                        description: err instanceof Error ? err.message : "Ocurrió un error inesperado",
+                    }),
+                }
+            );
+
             router.refresh();
-            sileo.dismiss(id);
-        } catch (error:any) {
-            console.error(error);
-            sileo.error({
-                title: "Error al eliminar usuario",
-                position: "top-center",
-                duration: 4500,
-                description: (
-                    <span className="text-white font-medium">
-                        {error.message}
-                    </span>
-                ),
-            });
+        } catch {
+            // sileo.promise ya muestra el toast de error
         } finally {
             setIsDeleting(false);
         }

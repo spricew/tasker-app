@@ -8,7 +8,7 @@ import PrimaryButton from "@/components/ui/Buttons/PrimaryButton";
 import TertiaryButton from "@/components/ui/Buttons/TertiaryButton";
 import PrimaryInput from "@/components/ui/PrimaryInput";
 import { SelectableCardGroup, SelectableCardOption } from "@/components/ui/SelectOption";
-import { CircleUserRound, ShieldUser, Pencil } from "lucide-react";
+import { CircleUserRound, ShieldUser, Pencil, Loader2 } from "lucide-react";
 
 interface EditProps {
     id: string;
@@ -20,6 +20,7 @@ interface EditProps {
 export default function EditUserButton({ id, currentName, currentEmail, currentRole }: EditProps) {
     const router = useRouter();
     const [showModal, setShowModal] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const initialRole = currentRole === 'ADMIN' ? 'admin' : 'estudiante';
     const [role, setRole] = useState(initialRole);
@@ -31,6 +32,7 @@ export default function EditUserButton({ id, currentName, currentEmail, currentR
 
     const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
         e.preventDefault();
+        setIsLoading(true);
 
         const formData = new FormData(e.currentTarget);
         const nombre = formData.get("nombre") as string;
@@ -39,44 +41,44 @@ export default function EditUserButton({ id, currentName, currentEmail, currentR
         const rolFormateado = role === 'admin' ? 'ADMIN' : 'USER';
 
         try {
-            await UpdateUserByAdmin(id, {
-                nombre,
-                email,
-                rol: rolFormateado,
-                password: password || undefined // Solo lo enviamos si escribió algo
-            });
-
-            sileo.success({
-                title: "Usuario actualizado",
-                duration: 3000,
-                autopilot: {
-                    expand: 0,
-                    collapse: 2000,
-                },
-                description: (
-                    <span className="text-white font-medium">
-                        ¡El usuario ha sido actualizado exitosamente!
-                    </span>
-                ),
-            });
+            await sileo.promise(
+                () => UpdateUserByAdmin(id, {
+                    nombre,
+                    email,
+                    rol: rolFormateado,
+                    password: password || undefined // Solo lo enviamos si escribió algo
+                }),
+                {
+                    loading: {
+                        title: "Guardando cambios...",
+                    },
+                    success: {
+                        title: "Usuario actualizado",
+                        duration: 3000,
+                        autopilot: {
+                            expand: 0,
+                            collapse: 2000,
+                        },
+                        description: "¡El usuario ha sido actualizado exitosamente!",
+                    },
+                    error: (err) => ({
+                        title: "Error al actualizar el usuario",
+                        duration: 4500,
+                        autopilot: {
+                            expand: 0,
+                            collapse: 3500,
+                        },
+                        description: err instanceof Error ? err.message : "Ocurrió un error inesperado",
+                    }),
+                }
+            );
 
             setShowModal(false);
             router.refresh();
-        } catch (error: any) {
-            console.error("Error al actualizar:", error);
-            sileo.error({
-                title: "Error al actualizar el usuario",
-                duration: 4500,
-                autopilot: {
-                    expand: 0,
-                    collapse: 3500,
-                },
-                description: (
-                    <span className="text-white font-medium">
-                        {error.message}
-                    </span>
-                ),
-            });
+        } catch {
+            // sileo.promise ya muestra el toast de error
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -98,11 +100,17 @@ export default function EditUserButton({ id, currentName, currentEmail, currentR
                         </header>
                         <form className="flex flex-col w-full gap-3" onSubmit={handleSubmit}>
                             <SelectableCardGroup name="userRole" options={roleOptions} selectedValue={role} onChange={setRole} />
-                            <PrimaryInput name="nombre" label="usuario" defaultValue={currentName}  required minLength={8} />
-                            <PrimaryInput name="email" label="email" defaultValue={currentEmail} required minLength={16} />
-                            <PrimaryInput name="password" label="nueva contraseña (opcional)" placeholder="Dejar en blanco para no cambiar" type="password" minLength={8}/>
+                            <PrimaryInput name="nombre" label="usuario" defaultValue={currentName} required minLength={8} disabled={isLoading} />
+                            <PrimaryInput name="email" label="email" defaultValue={currentEmail} required minLength={16} disabled={isLoading} />
+                            <PrimaryInput name="password" label="nueva contraseña (opcional)" placeholder="Dejar en blanco para no cambiar" type="password" minLength={8} disabled={isLoading} />
 
-                            <PrimaryButton text="Guardar cambios" extraclass="w-full" type="submit" />
+                            <PrimaryButton
+                                text={isLoading ? "Guardando..." : "Guardar cambios"}
+                                Icon={isLoading ? <Loader2 className="animate-spin" /> : undefined}
+                                extraclass="w-full"
+                                type="submit"
+                                disabled={isLoading}
+                            />
                         </form>
                     </div>
                 </div>

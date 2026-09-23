@@ -8,7 +8,7 @@ import { sileo } from "sileo";
 import PrimaryButton from "@/components/ui/Buttons/PrimaryButton";
 import PrimaryInput from "@/components/ui/PrimaryInput";
 import { SelectableCardGroup, SelectableCardOption } from "@/components/ui/SelectOption";
-import { CircleUserRound, ShieldUser } from "lucide-react";
+import { CircleUserRound, ShieldUser, Loader2 } from "lucide-react";
 
 interface CreateUserFormProps {
     onSuccess: () => void;
@@ -36,30 +36,36 @@ export default function CreateUserForm({ onSuccess }: CreateUserFormProps) {
         const rolFormateado = role === 'admin' ? 'ADMIN' : 'USER';
 
         try {
-            await createUserByAdmin({
-                nombre: String(nombre),
-                email: String(email),
-                password: String(password),
-                rol: rolFormateado
-            });
+            await sileo.promise(
+                () => createUserByAdmin({
+                    nombre: String(nombre),
+                    email: String(email),
+                    password: String(password),
+                    rol: rolFormateado
+                }),
+                {
+                    loading: {
+                        title: "Creando usuario...",
+                    },
+                    success: {
+                        title: "Usuario registrado",
+                        duration: 3000,
+                        autopilot: { expand: 0, collapse: 2000 },
+                        description: "¡El usuario ha sido creado exitosamente!",
+                    },
+                    error: (err) => ({
+                        title: "Error al crear usuario",
+                        duration: 4500,
+                        autopilot: { expand: 0, collapse: 3500 },
+                        description: err instanceof Error ? err.message : "Ocurrió un error inesperado",
+                    }),
+                }
+            );
 
             onSuccess();
             router.refresh();
-
-            sileo.success({
-                title: "Usuario registrado",
-                duration: 3000,
-                autopilot: { expand: 0, collapse: 2000 },
-                description: <span className="text-white font-medium">¡El usuario ha sido creado exitosamente!</span>,
-            });
-
-        } catch (error: any) {
-            sileo.error({
-                title: "Error al crear usuario",
-                duration: 4500,
-                autopilot: { expand: 0, collapse: 3500 },
-                description: <span className="text-white font-medium">{error.message}</span>,
-            });
+        } catch {
+            // sileo.promise ya muestra el toast de error
         } finally {
             setIsLoading(false);
         }
@@ -71,7 +77,13 @@ export default function CreateUserForm({ onSuccess }: CreateUserFormProps) {
             <PrimaryInput name="nombre" label="usuario" placeholder="userexample" required minLength={8} disabled={isLoading} />
             <PrimaryInput name="email" label="email" placeholder="email@example.com" required minLength={16} disabled={isLoading} />
             <PrimaryInput name="password" label="contraseña" placeholder="••••••••" type="password" required minLength={8} disabled={isLoading} />
-            <PrimaryButton text={isLoading ? "Guardando..." : "Crear usuario"} extraclass="w-full" type="submit" disabled={isLoading} />
+            <PrimaryButton
+                text={isLoading ? "Guardando..." : "Crear usuario"}
+                Icon={isLoading ? <Loader2 className="animate-spin" /> : undefined}
+                extraclass="w-full"
+                type="submit"
+                disabled={isLoading}
+            />
         </form>
     );
 }
