@@ -58,7 +58,7 @@ export default function Home() {
         className="mx-auto mt-24 max-w-300 px-6 md:mt-40"
       >
         <h2 className="max-w-2xl text-4xl font-semibold leading-[1.09] tracking-tight md:text-5xl">
-          Empieza en <span className="text-tertiary">tres pasos</span>
+          Empieza en <span className="text-primary">tres pasos</span>
         </h2>
 
         <div className="mt-16 grid gap-6 md:grid-cols-3">
@@ -72,10 +72,10 @@ export default function Home() {
               >
                 {step.number}
               </span>
-              <h3 className="mt-4 text-lg font-semibold leading-[1.38] tracking-tight">
+              <h3 className="mt-3 text-lg font-semibold tracking-tight">
                 {step.title}
               </h3>
-              <p className="mt-3 text-base leading-[1.47]">
+              <p className="mt-3 text-base leading-snug">
                 {step.body}
               </p>
             </div>
