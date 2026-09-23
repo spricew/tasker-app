@@ -43,7 +43,7 @@ export const FEATURES = [
 export const STEPS = [
   {
     number: "01",
-    badge: "bg-tertiary",
+    badge: "bg-primary",
     title: "Crea tu cuenta",
     body: "Regístrate en menos de un minuto con tu correo y empieza a organizar tu día.",
   },
