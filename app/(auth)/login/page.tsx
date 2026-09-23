@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { loginUser } from "@/lib/api/auth";
 import { sileo } from "sileo";
+import { Loader2 } from "lucide-react";
 import PrimaryButton from "@/components/ui/Buttons/PrimaryButton";
 import TertiaryButton from "@/components/ui/Buttons/TertiaryButton";
 import PrimaryInput from "@/components/ui/PrimaryInput";
@@ -21,37 +22,40 @@ export default function Login() {
     const password = formData.get("password") as string;
 
     try {
-      const respuesta = await loginUser({ email, password });
-
-      sileo.success({
-        title: "Sesión iniciada correctamente",
-        duration: 3000,
-        autopilot: {
-          expand: 0,
-          collapse: 2000,
-        },
-      });
+      const respuesta = await sileo.promise(
+        () => loginUser({ email, password }),
+        {
+          loading: {
+            title: "Iniciando sesión...",
+          },
+          success: {
+            title: "Sesión iniciada",
+            description: "Redirigiendo a tu panel...",
+            duration: 3000,
+            autopilot: {
+              expand: 0,
+              collapse: 2000,
+            },
+          },
+          error: (err) => ({
+            title: "Error al iniciar sesión",
+            description: err instanceof Error ? err.message : "Ocurrió un error inesperado",
+            duration: 4500,
+            autopilot: {
+              expand: 0,
+              collapse: 3500,
+            },
+          }),
+        }
+      );
 
       if (respuesta.usuario.rol === 'ADMIN') {
         router.push("/admin");
       } else {
         router.push("/student");
       }
-
-    } catch (error: any) {
-      sileo.error({
-        title: "Error al iniciar sesión",
-        duration: 4500,
-        autopilot: {
-          expand: 0,
-          collapse: 3500,
-        },
-        description: (
-          <span className="text-white font-medium">
-            {error.message}
-          </span>
-        ),
-      });
+    } catch {
+      // sileo.promise ya muestra el toast de error
     } finally {
       setIsLoading(false);
     }
@@ -78,7 +82,13 @@ export default function Login() {
             href="/recover"
             extraclass="text-sm text-ref-palette-neutral-40"
           />
-          <PrimaryButton text={isLoading ? "Cargando..." : "Iniciar sesión"} extraclass="w-full" />
+          <PrimaryButton
+            text={isLoading ? "Cargando..." : "Iniciar sesión"}
+            Icon={isLoading ? <Loader2 className="animate-spin" /> : undefined}
+            type="submit"
+            disabled={isLoading}
+            extraclass="w-full"
+          />
         </form>
         <div>
           <span className="text-sm text-ref-palette-neutral-50">
