@@ -13,23 +13,30 @@ export default function ContactForm() {
 
     const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
         e.preventDefault()
+        const form = e.currentTarget
         setIsLoading(true)
 
         const formData = new FormData(e.currentTarget)
+        const name = formData.get('name') as string
+        const email = formData.get('email') as string
+        const subject = formData.get('subject') as string
+        const message = formData.get('message') as string
 
         try {
-            const res = await fetch(`https://formsubmit.co/${FORMSUBMIT_EMAIL}`, {
+            const res = await fetch(`https://formsubmit.co/ajax/${FORMSUBMIT_EMAIL}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    name: formData.get('name'),
-                    email: formData.get('email'),
-                    subject: formData.get('subject'),
-                    message: formData.get('message'),
+                    _subject: subject,
+                    name,
+                    email,
+                    message,
                 }),
             })
 
-            if (!res.ok) throw new Error('Error al enviar')
+            if (!res.ok) {
+                throw new Error('Error al enviar el mensaje')
+            }
 
             sileo.success({
                 title: 'Mensaje enviado',
@@ -40,10 +47,11 @@ export default function ContactForm() {
                 },
             })
 
-            e.currentTarget.reset()
-        } catch {
+            form.reset()
+        } catch (error) {
+            const msg = error instanceof Error ? error.message : 'Error al enviar el mensaje'
             sileo.error({
-                title: 'Error al enviar',
+                title: msg,
                 duration: 4500,
                 autopilot: {
                     expand: 0,
