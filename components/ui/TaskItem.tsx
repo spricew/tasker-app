@@ -62,7 +62,7 @@ export default function TaskItem({ id, title, completed, ...props }: TaskItemPro
       variants={itemVariants}
       className="flex items-center gap-x-4 w-fit max-w-3/5 group"
     >
-      <label className={`flex items-center gap-x-3 w-fit ${isLoading || isDeleting ? 'cursor-wait opacity-80' : 'cursor-pointer'}`}>
+      <label className={`flex items-center gap-x-3 w-fit ${isLoading || isDeleting ? 'cursor-progress opacity-80' : 'cursor-pointer'}`}>
         <input
           type="checkbox"
           className="peer sr-only"
