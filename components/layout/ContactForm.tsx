@@ -16,51 +16,45 @@ export default function ContactForm() {
         const form = e.currentTarget
         setIsLoading(true)
 
-        const formData = new FormData(e.currentTarget)
+        const formData = new FormData(form)
         const name = formData.get('name') as string
         const email = formData.get('email') as string
         const subject = formData.get('subject') as string
         const message = formData.get('message') as string
 
-        try {
-            const res = await fetch(`https://formsubmit.co/ajax/${FORMSUBMIT_EMAIL}`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    _subject: subject,
-                    name,
-                    email,
-                    message,
-                }),
-            })
+        form.reset()
+        setIsLoading(false)
 
-            if (!res.ok) {
-                throw new Error('Error al enviar el mensaje')
-            }
+        sileo.success({
+            title: 'Mensaje enviado',
+            duration: 3000,
+            autopilot: {
+                expand: 0,
+                collapse: 2000,
+            },
+        })
 
-            sileo.success({
-                title: 'Mensaje enviado',
-                duration: 3000,
-                autopilot: {
-                    expand: 0,
-                    collapse: 2000,
-                },
-            })
-
-            form.reset()
-        } catch (error) {
-            const msg = error instanceof Error ? error.message : 'Error al enviar el mensaje'
+        fetch(`https://formsubmit.co/ajax/${FORMSUBMIT_EMAIL}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                _subject: subject,
+                name,
+                email,
+                message,
+            }),
+        }).then((res) => {
+            if (!res.ok) throw new Error(res.statusText)
+        }).catch(() => {
             sileo.error({
-                title: msg,
+                title: 'No se pudo enviar el mensaje',
                 duration: 4500,
                 autopilot: {
                     expand: 0,
                     collapse: 3500,
                 },
             })
-        } finally {
-            setIsLoading(false)
-        }
+        })
     }
 
     return (
