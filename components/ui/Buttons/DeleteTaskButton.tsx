@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { deleteTask } from "@/lib/api/tasks";
+import { sileo } from "sileo";
 import TertiaryButton from "@/components/ui/Buttons/TertiaryButton";
 import { Trash2 } from "lucide-react";
 
@@ -22,7 +23,15 @@ export default function DeleteTaskButton({
             await deleteTask(id);
             router.refresh();
         } catch (error) {
-            console.error(error);
+            sileo.error({
+                title: "No se pudo eliminar la tarea",
+                duration: 4500,
+                autopilot: {
+                    expand: 0,
+                    collapse: 3500,
+                },
+                description: error instanceof Error ? error.message : "Ocurrió un error inesperado",
+            });
         }
     };
 

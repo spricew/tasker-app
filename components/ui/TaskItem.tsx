@@ -4,6 +4,7 @@ import { useState } from "react";
 import { InputHTMLAttributes } from "react";
 import { Check } from "lucide-react";
 import { toggleTask } from "@/lib/api/tasks";
+import { sileo } from "sileo";
 import { useRouter } from "next/navigation";
 import { motion, Variants } from "framer-motion";
 import DeleteTaskButton from "./Buttons/DeleteTaskButton";
@@ -30,8 +31,16 @@ export default function TaskItem({ id, title, completed, ...props }: TaskItemPro
       await toggleTask(id, nuevoEstado);
       router.refresh();
     } catch (error) {
-      console.error(error);
       setIsCompleted(!nuevoEstado);
+      sileo.error({
+        title: "No se pudo actualizar la tarea",
+        duration: 4500,
+        autopilot: {
+          expand: 0,
+          collapse: 3500,
+        },
+        description: error instanceof Error ? error.message : "Ocurrió un error inesperado",
+      });
     } finally {
       setIsLoading(false);
     }
