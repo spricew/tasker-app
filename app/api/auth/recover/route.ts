@@ -1,9 +1,7 @@
 import { NextResponse } from 'next/server';
 import prisma from '@/lib/db';
 import jwt from 'jsonwebtoken';
-import { Resend } from 'resend';
-
-const resend = new Resend(process.env.RESEND_API_KEY);
+import { sendEmail } from '@/lib/email';
 
 export async function POST(request: Request) {
   try {
@@ -31,8 +29,7 @@ export async function POST(request: Request) {
     const baseUrl = process.env.NEXT_PUBLIC_APP_URL;
     const resetLink = `${baseUrl}/reset?token=${resetToken}`;
 
-    await resend.emails.send({
-      from: 'Tasker App <onboarding@tasker.app>',
+    await sendEmail({
       to: email,
       subject: 'Recuperación de contraseña - Tasker',
       html: `
