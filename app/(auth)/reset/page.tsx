@@ -7,6 +7,8 @@ import Image from "next/image";
 import PrimaryButton from "@/components/ui/Buttons/PrimaryButton";
 import PrimaryInput from "@/components/ui/PrimaryInput";
 import TertiaryButton from "@/components/ui/Buttons/TertiaryButton";
+import { Loader2 } from "lucide-react";
+import { sileo } from "sileo";
 
 function ResetForm() {
     const router = useRouter();
@@ -39,15 +41,44 @@ function ResetForm() {
         }
 
         try {
-            await resetPassword(token, newPassword);
+            await sileo.promise(
+                () => resetPassword(token, newPassword),
+                {
+                    loading: {
+                        title: "Actualizando contraseña...",
+                    },
+                    success: {
+                        title: "Contraseña actualizada",
+                        duration: 3000,
+                        autopilot: {
+                            expand: 0,
+                            collapse: 2000,
+                        },
+                    },
+                    error: (err) => {
+                        const message = err instanceof Error ? err.message : "Ocurrió un error inesperado";
+                        setError(message);
+                        return {
+                            title: "Error al actualizar la contraseña",
+                            duration: 4500,
+                            autopilot: {
+                                expand: 0,
+                                collapse: 3500,
+                            },
+                            description: message,
+                        };
+                    },
+                }
+            );
+
             setSuccess(true);
 
             setTimeout(() => {
                 router.push("/login");
             }, 3000);
 
-        } catch (err: any) {
-            setError(err.message);
+        } catch {
+            // sileo.promise ya muestra el toast de error
         } finally {
             setIsLoading(false);
         }
@@ -108,8 +139,10 @@ function ResetForm() {
 
                 <PrimaryButton
                     text={isLoading ? "Guardando..." : "Actualizar contraseña"}
+                    Icon={isLoading ? <Loader2 className="animate-spin" /> : undefined}
                     extraclass="w-full mt-2"
                     type="submit"
+                    disabled={isLoading}
                 />
             </form>
         </>

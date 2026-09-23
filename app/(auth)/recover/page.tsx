@@ -6,27 +6,48 @@ import PrimaryButton from "@/components/ui/Buttons/PrimaryButton";
 import PrimaryInput from "@/components/ui/PrimaryInput";
 import TertiaryButton from "@/components/ui/Buttons/TertiaryButton";
 import { requestPasswordReset } from "@/lib/api/auth";
-import { ChevronLeft } from "lucide-react";
+import { ChevronLeft, Loader2 } from "lucide-react";
+import { sileo } from "sileo";
 
 export default function RecoverPassword() {
     const [isLoading, setIsLoading] = useState(false);
-    const [message, setMessage] = useState("");
 
     const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
         e.preventDefault();
         setIsLoading(true);
-        setMessage("");
 
         const formData = new FormData(e.currentTarget);
         const email = formData.get("email") as string;
 
         try {
-            await requestPasswordReset(email);
-
-            setMessage("Si el correo está registrado, recibirás un enlace para restablecer tu contraseña en los próximos minutos.");
-
-        } catch (error) {
-            setMessage("Ocurrió un error al procesar la solicitud. Inténtalo más tarde.");
+            await sileo.promise(
+                () => requestPasswordReset(email),
+                {
+                    loading: {
+                        title: "Enviando enlace de recuperación...",
+                    },
+                    success: {
+                        title: "Solicitud enviada",
+                        duration: 5000,
+                        autopilot: {
+                            expand: 0,
+                            collapse: 4000,
+                        },
+                        description: "Si el correo está registrado, recibirás un enlace para restablecer tu contraseña en los próximos minutos.",
+                    },
+                    error: (err) => ({
+                        title: "Error al procesar la solicitud",
+                        duration: 4500,
+                        autopilot: {
+                            expand: 0,
+                            collapse: 3500,
+                        },
+                        description: err instanceof Error ? err.message : "Ocurrió un error inesperado. Inténtalo más tarde.",
+                    }),
+                }
+            );
+        } catch {
+            // sileo.promise ya muestra el toast de error
         } finally {
             setIsLoading(false);
         }
@@ -59,16 +80,12 @@ export default function RecoverPassword() {
 
                     <PrimaryButton
                         text={isLoading ? "Enviando..." : "Enviar enlace"}
+                        Icon={isLoading ? <Loader2 className="animate-spin" /> : undefined}
                         extraclass="w-full"
                         type="submit"
+                        disabled={isLoading}
                     />
                 </form>
-
-                {message && (
-                    <div className="squircle p-3 rounded-lg bg-primary-background text-primary text-sm text-center">
-                        {message}
-                    </div>
-                )}
 
                 <TertiaryButton
                     Icon={<ChevronLeft strokeWidth={1.6} className="size-[1.6em] -mr-1" />}
