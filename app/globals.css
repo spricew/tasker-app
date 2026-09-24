@@ -166,7 +166,7 @@ body {
 }
 
 .zoom-in {
-    animation: zoomIn 1s cubic-bezier(0.1, 0.8, 0, 1) 0.2s backwards;
+    animation: zoomIn 1s cubic-bezier(0.1, 0.8, 0, 1) 0s backwards;
 }
 
 @keyframes zoomIn {

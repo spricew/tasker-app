@@ -20,7 +20,7 @@ export default async function Admin() {
     }
 
     return (
-        <div className="flex flex-col flex-1 gap-y-8 px-18 py-12">
+        <div className="flex flex-col flex-1 gap-y-8 px-18 py-12 zoom-in">
             <header className="flex justify-between items-center">
                 <div className="flex items-center gap-x-5">
                     <Image src={"/images/dashboard-icon.png"} alt="" width={65} height={65} className="drop-shadow-xl" />
