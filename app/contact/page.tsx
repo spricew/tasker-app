@@ -41,7 +41,7 @@ export default function Contact() {
                                 theme='tertiary'
                                 Icon={<MessageSquare strokeWidth={2.25} size={16} />}
                                 extraclass='text-sm rounded-full'
-                                href='mailto:heydercramvcreator@gmail.com'
+                                href='https://github.com/spricew'
                             />
                         </div>
                     </div>
