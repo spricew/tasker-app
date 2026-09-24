@@ -1,9 +1,11 @@
 import { getUserFromToken } from "@/lib/auth";
 import { getTasksByUserId } from "@/lib/data/tasks";
+import { getUserById } from "@/lib/data/users";
 
 import CreateTaskButton from "@/components/ui/Buttons/CreateTaskbutton";
 import DynamicIsland from "@/components/ui/DynamicIsland";
 import LogoutButton from "@/components/ui/Buttons/LogoutButton";
+import EditProfileButton from "@/components/ui/Buttons/EditProfileButton";
 import StudentHeader from "@/components/layout/StudentHeader";
 
 import type { Metadata } from "next";
@@ -22,8 +24,16 @@ interface StudentTask {
 export default async function Student() {
     const user = await getUserFromToken();
     
-    const loggedInUserName = user?.nombre as string;
     const userId = user?.id;
+
+    let currentUser: { id: string; nombre: string; email: string; rol: 'ADMIN' | 'USER' } | null = null;
+    try {
+        if (userId) {
+            currentUser = await getUserById(userId);
+        }
+    } catch {
+        console.error("Error obteniendo el usuario");
+    }
 
     let tasks: StudentTask[] = [];
 
@@ -52,13 +62,12 @@ export default async function Student() {
                 <div className="relative flex flex-col gap-y-2">
                     <span className="self-end font-medium tracking-tight first-letter:capitalize text-nowrap">{dateString}</span>
 
-                    <DynamicIsland studentName={loggedInUserName}>
-                        {/* <TertiaryButton
-                            text="Editar perfil"
-                            Icon={<Pencil className="size-[1em] stroke-2" />}
-                            iconPosition="left"
-                            theme="secondary"
-                        /> */}
+                    <DynamicIsland studentName={currentUser?.nombre ?? ''}>
+                        {currentUser && (
+                            <EditProfileButton
+                                currentName={currentUser.nombre}
+                            />
+                        )}
                         <LogoutButton />
                     </DynamicIsland>
                 </div>

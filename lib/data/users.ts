@@ -13,6 +13,19 @@ export async function getAllUsers() {
     }
 }
 
+export async function getUserById(id: string) {
+    try {
+        const user = await prisma.user.findUnique({
+            where: { id: id },
+            select: { id: true, nombre: true, email: true, rol: true }
+        });
+        return user;
+    } catch (error) {
+        console.error("Error obteniendo usuario:", error);
+        return null;
+    }
+}
+
 export async function createUser(data: {
     nombre: string;
     email: string;

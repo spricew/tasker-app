@@ -1,6 +1,8 @@
 "use client";
 
 import { motion, AnimatePresence } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { X } from "lucide-react";
 import TertiaryButton from '@/components/ui/Buttons/TertiaryButton';
 
@@ -13,7 +15,15 @@ interface AnimatedModalProps {
 }
 
 export default function AnimatedModal({ isOpen, onClose, title, description, children }: AnimatedModalProps) {
-    return (
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    if (!mounted) return null;
+
+    return createPortal(
         <AnimatePresence>
             {isOpen && (
                 <motion.div
@@ -21,6 +31,7 @@ export default function AnimatedModal({ isOpen, onClose, title, description, chi
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.3 }}
                     exit={{ opacity: 0 }}
+                    onClick={(e) => e.stopPropagation()}
                     className="fixed inset-0 grid place-items-center w-full h-full overflow-y-hidden bg-black/50 z-100"
                 >
                     <motion.div
@@ -54,6 +65,7 @@ export default function AnimatedModal({ isOpen, onClose, title, description, chi
                     </motion.div>
                 </motion.div>
             )}
-        </AnimatePresence>
+        </AnimatePresence>,
+        document.body
     );
 }

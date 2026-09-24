@@ -58,3 +58,25 @@ export async function UpdateUserByAdmin(id: string, data: UpdateUserData) {
 
   return res.json();
 }
+
+export interface UpdateProfileData {
+  nombre: string;
+  password?: string;
+}
+
+export async function updateProfile(data: UpdateProfileData) {
+  const res = await fetch("/api/auth/profile", {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+
+  if (!res.ok) {
+    const errorData = await res.json();
+    throw new Error(errorData.error || "Error al actualizar el perfil");
+  }
+
+  return res.json();
+}
