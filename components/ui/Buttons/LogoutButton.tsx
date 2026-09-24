@@ -30,6 +30,7 @@ export default function LogoutButton() {
             theme="destructive"
             Icon={<LogOut className="size-[1em] stroke-2" />}
             iconPosition="left"
+            extraclass='text-red-500'
             onClick={() => handleClick()}
         />
     );
