@@ -13,7 +13,8 @@ export default function Contact() {
     return (
         <div className='flex flex-col min-h-screen z-0'>
             <Navbar />
-            <main className='relative flex flex-col items-center justify-center w-full flex-1 px-6 py-16'>
+            <main className='relative flex flex-col items-center justify-center w-full flex-1 px-6 py-16 zoom-in'
+            style={{ animationDelay: '0s' }}>
                 <div className='relative z-10 flex flex-col items-center gap-y-8 max-w-lg text-center   '>
                     <h1 className="text-5xl font-semibold tracking-tighter md:text-6xl">
                         Contacto

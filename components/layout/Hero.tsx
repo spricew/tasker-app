@@ -8,7 +8,7 @@ export function Hero() {
 
             <MeshBackground />
 
-            <div className="mt-4">
+            <div className="mt-4 zoom-in">
 
                 <h1 className={`${family.className} mx-auto max-w-4xl leading-[1.09] tracking-tight text-ref-palette-secondary-60
                 text-5xl md:text-6xl lg:text-7xl`}>

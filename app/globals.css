@@ -14,7 +14,7 @@
     --color-primary-background: color-mix(in oklch, var(--color-ref-palette-primary-50) 10%, transparent);
     --color-secondary-background: color-mix(in oklch, var(--color-ref-palette-secondary-80) 10%, transparent);
     --color-tertiary-background: color-mix(in oklch, var(--color-ref-palette-tertiary-40) 10%, transparent);
-    
+
     --color-error: #BA1A1A;
     --color-on-error: #FFFFFF;
     --color-error-container: #FFDAD6;
@@ -31,7 +31,7 @@
     --color-brand-yellow: #DFA800;
     --color-on-brand-yellow: #FFFFFF;
     --color-brand-yellow-background: color-mix(in oklch, var(--color-brand-yellow) 10%, transparent);
-    
+
     --color-surface-tint: #5E5E5E;
     --color-surface-bright: #F9F9F9;
     --color-surface-container-lowest: #FFFFFF;
@@ -96,10 +96,10 @@
     --color-ref-palette-neutral-100: #FFFFFF;
 
     /* Shadows */
-  --shadow-card-inset: color(display-p3 0.94902 0.941176 0.929412) 0px 0px 0px 1px inset;
-  --shadow-nav-line: rgba(0, 0, 0, 0.04) 0px 0px 0px 1px;
-  --shadow-phone: rgba(0, 0, 0, 0.15) 0px 0px 24px 0px;
-  --shadow-elevated: 0px 5px 4px rgba(0, 0, 0, 0.01), 0px 15px 15px rgba(0, 0, 0, 0.01), 0px 30px 30px rgba(0, 0, 0, 0.04);
+    --shadow-card-inset: color(display-p3 0.94902 0.941176 0.929412) 0px 0px 0px 1px inset;
+    --shadow-nav-line: rgba(0, 0, 0, 0.04) 0px 0px 0px 1px;
+    --shadow-phone: rgba(0, 0, 0, 0.15) 0px 0px 24px 0px;
+    --shadow-elevated: 0px 5px 4px rgba(0, 0, 0, 0.01), 0px 15px 15px rgba(0, 0, 0, 0.01), 0px 30px 30px rgba(0, 0, 0, 0.04);
 }
 
 
@@ -161,8 +161,19 @@ body {
     }
 }
 
-[data-sileo-viewport]{
+[data-sileo-viewport] {
     z-index: 9999 !important;
+}
+
+.zoom-in {
+    animation: zoomIn 1s cubic-bezier(0.1, 0.8, 0, 1) 0.2s backwards;
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(96%);
+        opacity: 0;
+    }
 }
 
 /* *{
